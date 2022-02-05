@@ -68,7 +68,7 @@ Partial Class Form1
         'developerSettingsToolStripMenuItem
         '
         Me.developerSettingsToolStripMenuItem.Name = "developerSettingsToolStripMenuItem"
-        Me.developerSettingsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.developerSettingsToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
         Me.developerSettingsToolStripMenuItem.Text = "Developer Settings"
         '
         'Form1
@@ -81,7 +81,7 @@ Partial Class Form1
         Me.Controls.Add(Me.lblGamePlaceholder)
         Me.MainMenuStrip = Me.menuStrip1
         Me.Name = "Form1"
-        Me.Text = "Game"
+        Me.Text = "VB-Warships"
         Me.menuStrip1.ResumeLayout(False)
         Me.menuStrip1.PerformLayout()
         Me.ResumeLayout(False)
