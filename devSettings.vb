@@ -3,9 +3,9 @@
 'VV A window with settings and buttons to test and debug features of the game VV
 Public Class devSettings
 
-    Public SR As StreamReader 'delcare a stream Reader for use later
+    Public SR As StreamReader 'declare a stream Reader for use later
 
-    Public SW As StreamWriter 'delcare a stream Writer for use later
+    Public SW As StreamWriter 'declare a stream Writer for use later
 
     'declare variables
     Dim filepath As String = "C:\Users\dublo\Desktop\highscore.txt" 'location of the highscore file
@@ -26,8 +26,8 @@ Public Class devSettings
         Try
             player = txtPlayerName.Text
             highscore = CInt(txtPlayerScore.Text)
-            updateHighscoreFile() 'write thease variables to the highscore.txt file
-            displayAddedHighscore() 'print thease variables to a messagebox
+            updateHighscoreFile() 'write these variables to the highscore.txt file
+            displayAddedHighscore() 'print these variables to a messagebox
         Catch ex As InvalidCastException
             MsgBox("Enter correct data type", MsgBoxStyle.Exclamation)
         Catch ex As Exception
