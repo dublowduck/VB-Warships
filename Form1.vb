@@ -156,4 +156,155 @@
         System.Diagnostics.Debug.WriteLine("Exit: Form1_load")
     End Sub
 
+    Private Function guessToUpperCase(input As String)
+        'capitalise user input
+        'Yes I am aware putting this in a function is rather unnecessary
+        Diagnostics.Debug.WriteLine("guessToUpperCase")
+        Diagnostics.Debug.WriteLine("Return: " & UCase(input))
+        Diagnostics.Debug.WriteLine("Exit: guessToUpperCase")
+        Return UCase(input)
+    End Function
+
+    Private Function validateInput(strCoordinates As String)
+        'check that the input is a valid set of coordinates
+        Diagnostics.Debug.WriteLine("validateInput")
+        Dim intLengthOfCord As Integer = strCoordinates.Length
+        Diagnostics.Debug.WriteLine("validateInput: Length of coordinates: " & intLengthOfCord)
+        If intLengthOfCord = 2 Or intLengthOfCord = 3 Then 'check for a length of 2 or 3 chars
+
+            'Split the Coordinates:
+
+            'create a variable for X and Y cords
+            Dim charYCord As Char
+            Dim strXCord As String
+
+            charYCord = Strings.Left(strCoordinates, 1) 'take the first char from the left
+            Diagnostics.Debug.WriteLine("validateInput: Y Cord: " & charYCord)
+            strXCord = Strings.Right(strCoordinates, intLengthOfCord - 1) 'take the 1st (or 1st and 2nd) chars from the right
+            Diagnostics.Debug.WriteLine("validateInput: X Cord: " & strXCord)
+
+            'check if cords are on the board (in range: A1-J10)
+            Select Case charYCord
+                Case = "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K" 'if Y cord is valid
+                    Diagnostics.Debug.WriteLine("validateInput: Y Cord '" & charYCord & "': Valid")
+
+                    Select Case strXCord
+                        Case = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10  'if X cord is valid
+                            Diagnostics.Debug.WriteLine("validateInput: X Cord '" & strXCord & "': Valid")
+                            Diagnostics.Debug.WriteLine("Return: True")
+                            Diagnostics.Debug.WriteLine("Exit: validateInput")
+                            Return True
+                            'Yay the end of validateInput!
+                            'Return true!
+                        Case Else 'if X cord is invalid
+                            Diagnostics.Debug.WriteLine("validateInput: X Cord '" & strXCord & "': Invalid")
+                            Diagnostics.Debug.WriteLine("validateInput: Enter a valid X coordinate")
+                            MessageBox.Show("Enter a valid X coordinate")
+                    End Select
+
+                Case Else 'if Y cord is invalid
+                    Diagnostics.Debug.WriteLine("validateInput: Y cord not valid")
+                    MessageBox.Show("Enter a valid Y coordinate")
+                    Diagnostics.Debug.WriteLine("Return: False")
+                    Return False
+            End Select
+        ElseIf intLengthOfCord > 3 Then 'if intput is too long
+            Diagnostics.Debug.WriteLine("validateInput: Too many letters")
+            MessageBox.Show("Too many letters")
+            Diagnostics.Debug.WriteLine("Return False")
+            Diagnostics.Debug.WriteLine("Exit: validateInput")
+            Return False
+        ElseIf intLengthOfCord = 1 Then 'if input is too short
+            Diagnostics.Debug.WriteLine("validateInput: Not enough letters")
+            MessageBox.Show("Not enough letters!")
+            Diagnostics.Debug.WriteLine("Return False")
+            Diagnostics.Debug.WriteLine("Exit: validateInput")
+            Return False
+        End If
+        Diagnostics.Debug.WriteLine("Exit: validateInput")
+    End Function
+
+    Private Function boardToArray(input As String, intNumberOfCord As Integer)
+        'convert board coordinates to array coordinates
+        Diagnostics.Debug.WriteLine("boardToArray")
+        Dim yCord As Char = Strings.Left(input, 1)
+        Diagnostics.Debug.WriteLine("boardToArray: Y Cord = " & yCord)
+        Dim xCord As String = Strings.Right(input, intNumberOfCord - 1)
+        Diagnostics.Debug.WriteLine("boardToArray: X cord = " & xCord)
+
+        Dim yCordArray As Integer = 0
+        Dim xCordArray As Integer = 0
+
+        'I know this is inefficient
+
+        'Convert Y coordinate to array number:
+        If yCord = "A" Then
+            yCordArray = 0
+        ElseIf yCord = "B" Then
+            yCordArray = 1
+        ElseIf yCord = "C" Then
+            yCordArray = 2
+        ElseIf yCord = "D" Then
+            yCordArray = 3
+        ElseIf yCord = "E" Then
+            yCordArray = 4
+        ElseIf yCord = "F" Then
+            yCordArray = 5
+        ElseIf yCord = "G" Then
+            yCordArray = 6
+        ElseIf yCord = "H" Then
+            yCordArray = 7
+        ElseIf yCord = "I" Then
+            yCordArray = 8
+        ElseIf yCord = "J" Then
+            yCordArray = 9
+        End If
+
+        'Convert X coordinate to array number:
+        xCordArray = xCord - 1
+
+        'Split the Coordinates:
+
+        'create a variable for X and Y cords
+        Dim charYCord As Char
+        Dim strXCord As String
+
+        charYCord = Strings.Left(input, 1) 'take the first char from the left
+        Diagnostics.Debug.WriteLine("validateInput: Y Cord: " & charYCord)
+        strXCord = Strings.Right(input, intNumberOfCord - 1) 'take the 1st (or 1st and 2nd) chars from the right
+        Diagnostics.Debug.WriteLine("validateInput: X Cord: " & strXCord)
+
+        Diagnostics.Debug.WriteLine("Return: '" & yCordArray & xCordArray & "'")
+        Diagnostics.Debug.WriteLine("Exit: boardToArray")
+        Return CStr(yCordArray & xCordArray)
+        'return the new coordinates
+    End Function
+
+    Private Sub btnFire_Click(sender As Object, e As EventArgs) Handles btnFire.Click
+        'when Fire button is clicked:
+        System.Diagnostics.Debug.WriteLine("btnFire_Click")
+        Dim strUserInput As String
+
+        Dim intLengthOfInput As Integer = txtPlayerGuess.Text.Length 'get the length of the user input
+        If intLengthOfInput > 0 Then 'if textbox isn't empty
+
+            strUserInput = txtPlayerGuess.Text
+            Diagnostics.Debug.WriteLine("btnFire_Click: user input: " & strUserInput) 'print user input to console
+            Dim strUserInputUpper As String
+            strUserInputUpper = guessToUpperCase(strUserInput) 'capitalise user input
+
+            If validateInput(strUserInputUpper) = True Then 'if input is real coordinates
+                Dim strFireOrder As String 'a variable to send to the computer board to check for ships
+                strFireOrder = boardToArray(strUserInputUpper, intLengthOfInput) 'set strFireOrder to the board coordinates converted to array coordinates
+                'TODO: call a function to check if fire order is a hit, sink or miss
+
+            End If
+        Else
+            Diagnostics.Debug.WriteLine("btnFire_Click: No coordinates in box")
+            MessageBox.Show("Put some coordinates in the box!")
+            Diagnostics.Debug.WriteLine("Exit: btnFire_Click")
+        End If
+        Diagnostics.Debug.WriteLine("Exit: btnFire_Click")
+    End Sub
+
 End Class

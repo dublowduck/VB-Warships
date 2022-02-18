@@ -30,6 +30,31 @@ Partial Class Form1
         Me.lsbPlayerGameBoard = New System.Windows.Forms.ListBox()
         Me.lblPlayerGuessBoard = New System.Windows.Forms.Label()
         Me.lblPlayerGameBoard = New System.Windows.Forms.Label()
+        Me.txtPlayerGuess = New System.Windows.Forms.TextBox()
+        Me.btnFire = New System.Windows.Forms.Button()
+        Me.lblCoordinates = New System.Windows.Forms.Label()
+        Me.lblGuessColumns = New System.Windows.Forms.Label()
+        Me.lblGameColumns = New System.Windows.Forms.Label()
+        Me.lblGuessA = New System.Windows.Forms.Label()
+        Me.lblGuessB = New System.Windows.Forms.Label()
+        Me.lblGuessC = New System.Windows.Forms.Label()
+        Me.lblGuessD = New System.Windows.Forms.Label()
+        Me.lblGuessE = New System.Windows.Forms.Label()
+        Me.lblGuessF = New System.Windows.Forms.Label()
+        Me.lblGuessG = New System.Windows.Forms.Label()
+        Me.lblGuessH = New System.Windows.Forms.Label()
+        Me.lblGuessI = New System.Windows.Forms.Label()
+        Me.lblGuessJ = New System.Windows.Forms.Label()
+        Me.lblGameJ = New System.Windows.Forms.Label()
+        Me.lblGameI = New System.Windows.Forms.Label()
+        Me.lblGameH = New System.Windows.Forms.Label()
+        Me.lblGameG = New System.Windows.Forms.Label()
+        Me.lblGameF = New System.Windows.Forms.Label()
+        Me.lblGameE = New System.Windows.Forms.Label()
+        Me.lblGameD = New System.Windows.Forms.Label()
+        Me.lblGameC = New System.Windows.Forms.Label()
+        Me.lblGameB = New System.Windows.Forms.Label()
+        Me.lblGameA = New System.Windows.Forms.Label()
         Me.menuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -71,7 +96,7 @@ Partial Class Form1
         Me.lsbPlayerGuessBoard.ItemHeight = 21
         Me.lsbPlayerGuessBoard.Location = New System.Drawing.Point(41, 62)
         Me.lsbPlayerGuessBoard.Name = "lsbPlayerGuessBoard"
-        Me.lsbPlayerGuessBoard.Size = New System.Drawing.Size(180, 214)
+        Me.lsbPlayerGuessBoard.Size = New System.Drawing.Size(156, 214)
         Me.lsbPlayerGuessBoard.TabIndex = 3
         '
         'lsbPlayerGameBoard
@@ -81,13 +106,13 @@ Partial Class Form1
         Me.lsbPlayerGameBoard.ItemHeight = 21
         Me.lsbPlayerGameBoard.Location = New System.Drawing.Point(372, 62)
         Me.lsbPlayerGameBoard.Name = "lsbPlayerGameBoard"
-        Me.lsbPlayerGameBoard.Size = New System.Drawing.Size(180, 214)
+        Me.lsbPlayerGameBoard.Size = New System.Drawing.Size(156, 214)
         Me.lsbPlayerGameBoard.TabIndex = 4
         '
         'lblPlayerGuessBoard
         '
         Me.lblPlayerGuessBoard.AutoSize = True
-        Me.lblPlayerGuessBoard.Location = New System.Drawing.Point(73, 44)
+        Me.lblPlayerGuessBoard.Location = New System.Drawing.Point(66, 23)
         Me.lblPlayerGuessBoard.Name = "lblPlayerGuessBoard"
         Me.lblPlayerGuessBoard.Size = New System.Drawing.Size(107, 15)
         Me.lblPlayerGuessBoard.TabIndex = 5
@@ -96,17 +121,287 @@ Partial Class Form1
         'lblPlayerGameBoard
         '
         Me.lblPlayerGameBoard.AutoSize = True
-        Me.lblPlayerGameBoard.Location = New System.Drawing.Point(412, 44)
+        Me.lblPlayerGameBoard.Location = New System.Drawing.Point(405, 23)
         Me.lblPlayerGameBoard.Name = "lblPlayerGameBoard"
         Me.lblPlayerGameBoard.Size = New System.Drawing.Size(107, 15)
         Me.lblPlayerGameBoard.TabIndex = 6
         Me.lblPlayerGameBoard.Text = "Player Game Board"
+        '
+        'txtPlayerGuess
+        '
+        Me.txtPlayerGuess.Location = New System.Drawing.Point(236, 86)
+        Me.txtPlayerGuess.Name = "txtPlayerGuess"
+        Me.txtPlayerGuess.Size = New System.Drawing.Size(100, 23)
+        Me.txtPlayerGuess.TabIndex = 7
+        '
+        'btnFire
+        '
+        Me.btnFire.Location = New System.Drawing.Point(248, 140)
+        Me.btnFire.Name = "btnFire"
+        Me.btnFire.Size = New System.Drawing.Size(75, 23)
+        Me.btnFire.TabIndex = 8
+        Me.btnFire.Text = "Fire!"
+        Me.btnFire.UseVisualStyleBackColor = True
+        '
+        'lblCoordinates
+        '
+        Me.lblCoordinates.AutoSize = True
+        Me.lblCoordinates.Location = New System.Drawing.Point(248, 64)
+        Me.lblCoordinates.Name = "lblCoordinates"
+        Me.lblCoordinates.Size = New System.Drawing.Size(74, 15)
+        Me.lblCoordinates.TabIndex = 9
+        Me.lblCoordinates.Text = "Coordinates:"
+        '
+        'lblGuessColumns
+        '
+        Me.lblGuessColumns.AutoSize = True
+        Me.lblGuessColumns.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGuessColumns.Location = New System.Drawing.Point(41, 38)
+        Me.lblGuessColumns.Name = "lblGuessColumns"
+        Me.lblGuessColumns.Size = New System.Drawing.Size(145, 21)
+        Me.lblGuessColumns.TabIndex = 10
+        Me.lblGuessColumns.Text = "1 2 3 4 5 6 7 8 9 10"
+        '
+        'lblGameColumns
+        '
+        Me.lblGameColumns.AutoSize = True
+        Me.lblGameColumns.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGameColumns.Location = New System.Drawing.Point(372, 38)
+        Me.lblGameColumns.Name = "lblGameColumns"
+        Me.lblGameColumns.Size = New System.Drawing.Size(145, 21)
+        Me.lblGameColumns.TabIndex = 11
+        Me.lblGameColumns.Text = "1 2 3 4 5 6 7 8 9 10"
+        '
+        'lblGuessA
+        '
+        Me.lblGuessA.AutoSize = True
+        Me.lblGuessA.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGuessA.Location = New System.Drawing.Point(20, 64)
+        Me.lblGuessA.Name = "lblGuessA"
+        Me.lblGuessA.Size = New System.Drawing.Size(20, 21)
+        Me.lblGuessA.TabIndex = 12
+        Me.lblGuessA.Text = "A"
+        '
+        'lblGuessB
+        '
+        Me.lblGuessB.AutoSize = True
+        Me.lblGuessB.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGuessB.Location = New System.Drawing.Point(20, 85)
+        Me.lblGuessB.Name = "lblGuessB"
+        Me.lblGuessB.Size = New System.Drawing.Size(19, 21)
+        Me.lblGuessB.TabIndex = 13
+        Me.lblGuessB.Text = "B"
+        '
+        'lblGuessC
+        '
+        Me.lblGuessC.AutoSize = True
+        Me.lblGuessC.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGuessC.Location = New System.Drawing.Point(20, 106)
+        Me.lblGuessC.Name = "lblGuessC"
+        Me.lblGuessC.Size = New System.Drawing.Size(20, 21)
+        Me.lblGuessC.TabIndex = 14
+        Me.lblGuessC.Text = "C"
+        '
+        'lblGuessD
+        '
+        Me.lblGuessD.AutoSize = True
+        Me.lblGuessD.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGuessD.Location = New System.Drawing.Point(20, 127)
+        Me.lblGuessD.Name = "lblGuessD"
+        Me.lblGuessD.Size = New System.Drawing.Size(21, 21)
+        Me.lblGuessD.TabIndex = 15
+        Me.lblGuessD.Text = "D"
+        '
+        'lblGuessE
+        '
+        Me.lblGuessE.AutoSize = True
+        Me.lblGuessE.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGuessE.Location = New System.Drawing.Point(21, 148)
+        Me.lblGuessE.Name = "lblGuessE"
+        Me.lblGuessE.Size = New System.Drawing.Size(18, 21)
+        Me.lblGuessE.TabIndex = 16
+        Me.lblGuessE.Text = "E"
+        '
+        'lblGuessF
+        '
+        Me.lblGuessF.AutoSize = True
+        Me.lblGuessF.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGuessF.Location = New System.Drawing.Point(20, 169)
+        Me.lblGuessF.Name = "lblGuessF"
+        Me.lblGuessF.Size = New System.Drawing.Size(18, 21)
+        Me.lblGuessF.TabIndex = 17
+        Me.lblGuessF.Text = "F"
+        '
+        'lblGuessG
+        '
+        Me.lblGuessG.AutoSize = True
+        Me.lblGuessG.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGuessG.Location = New System.Drawing.Point(17, 190)
+        Me.lblGuessG.Name = "lblGuessG"
+        Me.lblGuessG.Size = New System.Drawing.Size(21, 21)
+        Me.lblGuessG.TabIndex = 18
+        Me.lblGuessG.Text = "G"
+        '
+        'lblGuessH
+        '
+        Me.lblGuessH.AutoSize = True
+        Me.lblGuessH.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGuessH.Location = New System.Drawing.Point(18, 211)
+        Me.lblGuessH.Name = "lblGuessH"
+        Me.lblGuessH.Size = New System.Drawing.Size(21, 21)
+        Me.lblGuessH.TabIndex = 19
+        Me.lblGuessH.Text = "H"
+        '
+        'lblGuessI
+        '
+        Me.lblGuessI.AutoSize = True
+        Me.lblGuessI.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGuessI.Location = New System.Drawing.Point(21, 232)
+        Me.lblGuessI.Name = "lblGuessI"
+        Me.lblGuessI.Size = New System.Drawing.Size(14, 21)
+        Me.lblGuessI.TabIndex = 20
+        Me.lblGuessI.Text = "I"
+        '
+        'lblGuessJ
+        '
+        Me.lblGuessJ.AutoSize = True
+        Me.lblGuessJ.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGuessJ.Location = New System.Drawing.Point(21, 253)
+        Me.lblGuessJ.Name = "lblGuessJ"
+        Me.lblGuessJ.Size = New System.Drawing.Size(16, 21)
+        Me.lblGuessJ.TabIndex = 21
+        Me.lblGuessJ.Text = "J"
+        '
+        'lblGameJ
+        '
+        Me.lblGameJ.AutoSize = True
+        Me.lblGameJ.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGameJ.Location = New System.Drawing.Point(347, 253)
+        Me.lblGameJ.Name = "lblGameJ"
+        Me.lblGameJ.Size = New System.Drawing.Size(16, 21)
+        Me.lblGameJ.TabIndex = 31
+        Me.lblGameJ.Text = "J"
+        '
+        'lblGameI
+        '
+        Me.lblGameI.AutoSize = True
+        Me.lblGameI.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGameI.Location = New System.Drawing.Point(347, 232)
+        Me.lblGameI.Name = "lblGameI"
+        Me.lblGameI.Size = New System.Drawing.Size(14, 21)
+        Me.lblGameI.TabIndex = 30
+        Me.lblGameI.Text = "I"
+        '
+        'lblGameH
+        '
+        Me.lblGameH.AutoSize = True
+        Me.lblGameH.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGameH.Location = New System.Drawing.Point(344, 211)
+        Me.lblGameH.Name = "lblGameH"
+        Me.lblGameH.Size = New System.Drawing.Size(21, 21)
+        Me.lblGameH.TabIndex = 29
+        Me.lblGameH.Text = "H"
+        '
+        'lblGameG
+        '
+        Me.lblGameG.AutoSize = True
+        Me.lblGameG.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGameG.Location = New System.Drawing.Point(343, 190)
+        Me.lblGameG.Name = "lblGameG"
+        Me.lblGameG.Size = New System.Drawing.Size(21, 21)
+        Me.lblGameG.TabIndex = 28
+        Me.lblGameG.Text = "G"
+        '
+        'lblGameF
+        '
+        Me.lblGameF.AutoSize = True
+        Me.lblGameF.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGameF.Location = New System.Drawing.Point(346, 169)
+        Me.lblGameF.Name = "lblGameF"
+        Me.lblGameF.Size = New System.Drawing.Size(18, 21)
+        Me.lblGameF.TabIndex = 27
+        Me.lblGameF.Text = "F"
+        '
+        'lblGameE
+        '
+        Me.lblGameE.AutoSize = True
+        Me.lblGameE.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGameE.Location = New System.Drawing.Point(347, 148)
+        Me.lblGameE.Name = "lblGameE"
+        Me.lblGameE.Size = New System.Drawing.Size(18, 21)
+        Me.lblGameE.TabIndex = 26
+        Me.lblGameE.Text = "E"
+        '
+        'lblGameD
+        '
+        Me.lblGameD.AutoSize = True
+        Me.lblGameD.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGameD.Location = New System.Drawing.Point(346, 127)
+        Me.lblGameD.Name = "lblGameD"
+        Me.lblGameD.Size = New System.Drawing.Size(21, 21)
+        Me.lblGameD.TabIndex = 25
+        Me.lblGameD.Text = "D"
+        '
+        'lblGameC
+        '
+        Me.lblGameC.AutoSize = True
+        Me.lblGameC.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGameC.Location = New System.Drawing.Point(346, 106)
+        Me.lblGameC.Name = "lblGameC"
+        Me.lblGameC.Size = New System.Drawing.Size(20, 21)
+        Me.lblGameC.TabIndex = 24
+        Me.lblGameC.Text = "C"
+        '
+        'lblGameB
+        '
+        Me.lblGameB.AutoSize = True
+        Me.lblGameB.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGameB.Location = New System.Drawing.Point(346, 85)
+        Me.lblGameB.Name = "lblGameB"
+        Me.lblGameB.Size = New System.Drawing.Size(19, 21)
+        Me.lblGameB.TabIndex = 23
+        Me.lblGameB.Text = "B"
+        '
+        'lblGameA
+        '
+        Me.lblGameA.AutoSize = True
+        Me.lblGameA.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblGameA.Location = New System.Drawing.Point(346, 64)
+        Me.lblGameA.Name = "lblGameA"
+        Me.lblGameA.Size = New System.Drawing.Size(20, 21)
+        Me.lblGameA.TabIndex = 22
+        Me.lblGameA.Text = "A"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.lblGameJ)
+        Me.Controls.Add(Me.lblGameI)
+        Me.Controls.Add(Me.lblGameH)
+        Me.Controls.Add(Me.lblGameG)
+        Me.Controls.Add(Me.lblGameF)
+        Me.Controls.Add(Me.lblGameE)
+        Me.Controls.Add(Me.lblGameD)
+        Me.Controls.Add(Me.lblGameC)
+        Me.Controls.Add(Me.lblGameB)
+        Me.Controls.Add(Me.lblGameA)
+        Me.Controls.Add(Me.lblGuessJ)
+        Me.Controls.Add(Me.lblGuessI)
+        Me.Controls.Add(Me.lblGuessH)
+        Me.Controls.Add(Me.lblGuessG)
+        Me.Controls.Add(Me.lblGuessF)
+        Me.Controls.Add(Me.lblGuessE)
+        Me.Controls.Add(Me.lblGuessD)
+        Me.Controls.Add(Me.lblGuessC)
+        Me.Controls.Add(Me.lblGuessB)
+        Me.Controls.Add(Me.lblGuessA)
+        Me.Controls.Add(Me.lblGameColumns)
+        Me.Controls.Add(Me.lblGuessColumns)
+        Me.Controls.Add(Me.lblCoordinates)
+        Me.Controls.Add(Me.btnFire)
+        Me.Controls.Add(Me.txtPlayerGuess)
         Me.Controls.Add(Me.lblPlayerGameBoard)
         Me.Controls.Add(Me.lblPlayerGuessBoard)
         Me.Controls.Add(Me.lsbPlayerGameBoard)
@@ -130,4 +425,29 @@ Partial Class Form1
     Friend WithEvents lsbPlayerGameBoard As ListBox
     Friend WithEvents lblPlayerGuessBoard As Label
     Friend WithEvents lblPlayerGameBoard As Label
+    Friend WithEvents txtPlayerGuess As TextBox
+    Friend WithEvents btnFire As Button
+    Friend WithEvents lblCoordinates As Label
+    Friend WithEvents lblGuessColumns As Label
+    Friend WithEvents lblGameColumns As Label
+    Friend WithEvents lblGuessA As Label
+    Friend WithEvents lblGuessB As Label
+    Friend WithEvents lblGuessC As Label
+    Friend WithEvents lblGuessD As Label
+    Friend WithEvents lblGuessE As Label
+    Friend WithEvents lblGuessF As Label
+    Friend WithEvents lblGuessG As Label
+    Friend WithEvents lblGuessH As Label
+    Friend WithEvents lblGuessI As Label
+    Friend WithEvents lblGuessJ As Label
+    Friend WithEvents lblGameJ As Label
+    Friend WithEvents lblGameI As Label
+    Friend WithEvents lblGameH As Label
+    Friend WithEvents lblGameG As Label
+    Friend WithEvents lblGameF As Label
+    Friend WithEvents lblGameE As Label
+    Friend WithEvents lblGameD As Label
+    Friend WithEvents lblGameC As Label
+    Friend WithEvents lblGameB As Label
+    Friend WithEvents lblGameA As Label
 End Class
