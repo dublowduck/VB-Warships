@@ -1,12 +1,19 @@
 ﻿Public Class Form1
 
+    'create global arrays
+
+    Dim arrayPlayerGameBoard(9, 9) As Integer 'Create board for the positions of the players ships
+    Dim arrayPlayerGuessBoard(9, 9) As Integer 'board for the positions of the players guesses
+    Dim arrayComputerGameBoard(9, 9) As Integer 'Create board for the positions of the computers ships
+    Dim arrayComputerGuessBoard(9, 9) As Integer 'board for the positions of the players guesses
+
     Private Sub readyPlayer1()
         'load the arrays for the players boards, fill them with water and print them to list boxes
 
         System.Diagnostics.Debug.WriteLine("readyPlayer1")
 
-        'Step 1: create player game array
-        Dim arrayPlayerGameBoard(9, 9) As Integer 'Create board for the positions of the players ships
+        'Step 1: Player game array
+
         'set all squares of the game board to 0 (water)
         For x = 0 To UBound(arrayPlayerGameBoard) 'for every column  x
             For y = 0 To UBound(arrayPlayerGameBoard) 'for every row y
@@ -27,10 +34,10 @@
                 End If
             Next
             lsbPlayerGameBoard.Items.Add(rows(r))
+
         Next
 
-        ' Step 2: load player guess array
-        Dim arrayPlayerGuessBoard(9, 9) As Integer 'board for the positions of the players guesses
+        ' Step 2: Player guess array
 
         'set all squares of the guess board to 0 (water)
         For x = 0 To UBound(arrayPlayerGuessBoard) 'for every column  x
@@ -41,24 +48,13 @@
         Next
 
         'print player guess array to lsbPlayerGuessBoard
-        System.Diagnostics.Debug.WriteLine("readyPlayer1: add 'arrayPlayerGuessBoard' to 'lsbPlayerGuessBoard'")
-        Dim rows2(9) As String
-        lsbPlayerGuessBoard.Items.Clear()
-        For r = 0 To 9
-            For c = 0 To 9
-                rows2(r) &= arrayPlayerGuessBoard(r, c)
-                If c < 9 Then
-                    rows2(r) &= " " 'this puts a space between each item horizontally
-                End If
-            Next
-            lsbPlayerGuessBoard.Items.Add(rows2(r))
-        Next
+        updateBoard(arrayPlayerGuessBoard, lsbPlayerGuessBoard)
 
         System.Diagnostics.Debug.WriteLine("Exit: readyPlayer1")
     End Sub
 
     Public Sub readyPlayerComputer()
-        'load the arrays for the computers boards, fill them with water and then add ships from hard coded layout
+        'load the arrays for the computers boards, fill them with water and then add ships from hard coded layout to the game array
 
         System.Diagnostics.Debug.WriteLine("readyPlayerComputer")
         ' meaning of all values in the array
@@ -69,8 +65,7 @@
         ' 4 = battleship (4 holes)
         ' 5 = aircraft carrier (5 holes)
 
-        ' Step 1: load computer game array
-        Dim arrayComputerGameBoard(9, 9) As Integer 'Create board for the positions of the players ships
+        ' Step 1: Computer game array
 
         'set all squares of the game board to 0 (water)
         For x = 0 To UBound(arrayComputerGameBoard) 'for every column  x
@@ -114,8 +109,7 @@
         arrayComputerGameBoard(3, 7) = 4
         arrayComputerGameBoard(3, 8) = 4
 
-        ' Step 2: load computer guess array
-        Dim arrayComputerGuessBoard(9, 9) As Integer 'board for the positions of the players guesses
+        ' Step 2: Computer guess array
 
         'set all squares of the guess array to 0 (water)
         For x = 0 To UBound(arrayComputerGuessBoard) 'for every column  x
@@ -280,6 +274,66 @@
         'return the new coordinates
     End Function
 
+    Public Function checkHit(cords As String)
+        'check and return what is located in arrayComputerGameBoard the coordinates provided
+        System.Diagnostics.Debug.WriteLine("checkHit")
+        'Split the Coordinates:
+
+        'create a variable for X and Y cords
+        Dim intYCord As Integer
+        Dim intXCord As Integer
+
+        intYCord = Strings.Left(cords, 1) 'take the first char from the left
+        Diagnostics.Debug.WriteLine("checkHit: Y Cord: " & intYCord)
+        intXCord = Strings.Right(cords, 1) 'take the 1st (or 1st and 2nd) chars from the right
+        Diagnostics.Debug.WriteLine("checkHit: X Cord: " & intXCord)
+
+        If arrayComputerGameBoard(intYCord, intXCord) = 0 Then
+            System.Diagnostics.Debug.WriteLine("Return: 0")
+            Return 0
+        ElseIf arrayComputerGameBoard(intYCord, intXCord) = 1 Then
+            System.Diagnostics.Debug.WriteLine("Return: 1")
+            Return 1
+            Diagnostics.Debug.WriteLine("Exit: checkHit")
+        ElseIf arrayComputerGameBoard(intYCord, intXCord) = 2 Then
+            System.Diagnostics.Debug.WriteLine("Return: 2")
+            Return 2
+            Diagnostics.Debug.WriteLine("Exit: checkHit")
+        ElseIf arrayComputerGameBoard(intYCord, intXCord) = 3 Then
+            System.Diagnostics.Debug.WriteLine("Return: 3")
+            Return 3
+            Diagnostics.Debug.WriteLine("Exit: checkHit")
+        ElseIf arrayComputerGameBoard(intYCord, intXCord) = 4 Then
+            System.Diagnostics.Debug.WriteLine("Return: 4")
+            Return 4
+            Diagnostics.Debug.WriteLine("Exit: checkHit")
+        ElseIf arrayComputerGameBoard(intYCord, intXCord) = 5 Then
+            System.Diagnostics.Debug.WriteLine("Return: 5")
+            Return 5
+            Diagnostics.Debug.WriteLine("Exit: checkHit")
+        End If
+
+    End Function
+
+    Private Sub updateBoard(arrayName As Array, boardName As ListBox)
+        System.Diagnostics.Debug.WriteLine("updateBoard")
+        'Format the contents of a 2d array and print it to a listbox
+        'print arrayName to boardName
+        System.Diagnostics.Debug.WriteLine("updateBoard: update the board from array")
+        Dim rows(9) As String
+        boardName.Items.Clear()
+        For r = 0 To 9
+            For c = 0 To 9
+                rows(r) &= arrayName(r, c)
+                If c < 9 Then
+                    rows(r) &= " " 'this puts a space between each item horizontally
+                End If
+            Next
+            boardName.Items.Add(rows(r))
+        Next
+        System.Diagnostics.Debug.WriteLine("Exit: updateBoard")
+    End Sub
+
     Private Sub btnFire_Click(sender As Object, e As EventArgs) Handles btnFire.Click
         'when Fire button is clicked:
         System.Diagnostics.Debug.WriteLine("btnFire_Click")
@@ -294,12 +348,36 @@
             strUserInputUpper = guessToUpperCase(strUserInput) 'capitalise user input
 
             If validateInput(strUserInputUpper) = True Then 'if input is real coordinates
-                Dim strFireOrder As String 'a variable to send to the computer board to check for ships
+                Dim strFireOrder As String 'create a variable to send to the computer board to check for ships
                 strFireOrder = boardToArray(strUserInputUpper, intLengthOfInput) 'set strFireOrder to the board coordinates converted to array coordinates
-                'TODO: call a function to check if fire order is a hit, sink or miss
+                'split strFireOrder into two integers for X and Y cords
+                Dim intFireOrderX As Integer = Strings.Left(strFireOrder, 1)
+                System.Diagnostics.Debug.WriteLine("btnFire_Click: intFireOrderX = " & intFireOrderX)
+                Dim intFireOrderY As Integer = Strings.Right(strFireOrder, 1)
+                System.Diagnostics.Debug.WriteLine("btnFire_Click: intFireOrderY = " & intFireOrderY)
 
-            End If
-        Else
+                'Call a function to check if fire order is a hit, sink or miss
+                System.Diagnostics.Debug.WriteLine("Call: checkHit")
+
+                'update player guess array
+                arrayPlayerGuessBoard(intFireOrderX, intFireOrderY) = checkHit(strFireOrder)
+
+                If Not checkHit(strFireOrder) = 0 Then 'rudimentary system to tell player if hit or miss
+                    MessageBox.Show("Hit!")
+                Else
+                    MessageBox.Show("Miss!")
+                End If
+                'TODO: update this system so it is better
+
+                System.Diagnostics.Debug.WriteLine("btnFire_Click: Set arrayPlayerGuessBoard(" & intFireOrderX & "," & intFireOrderY & ") to " & checkHit(strFireOrder))
+
+                    'redraw player guess board with new information in the array
+
+                    System.Diagnostics.Debug.WriteLine("Call: updateBoard")
+                    updateBoard(arrayPlayerGuessBoard, lsbPlayerGuessBoard)
+
+                End If
+            Else
             Diagnostics.Debug.WriteLine("btnFire_Click: No coordinates in box")
             MessageBox.Show("Put some coordinates in the box!")
             Diagnostics.Debug.WriteLine("Exit: btnFire_Click")
