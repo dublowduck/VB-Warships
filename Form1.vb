@@ -290,27 +290,28 @@
 
         If arrayComputerGameBoard(intYCord, intXCord) = 0 Then
             System.Diagnostics.Debug.WriteLine("Return: 0")
+            Diagnostics.Debug.WriteLine("Exit: checkHit")
             Return 0
         ElseIf arrayComputerGameBoard(intYCord, intXCord) = 1 Then
             System.Diagnostics.Debug.WriteLine("Return: 1")
-            Return 1
             Diagnostics.Debug.WriteLine("Exit: checkHit")
+            Return 1
         ElseIf arrayComputerGameBoard(intYCord, intXCord) = 2 Then
             System.Diagnostics.Debug.WriteLine("Return: 2")
-            Return 2
             Diagnostics.Debug.WriteLine("Exit: checkHit")
+            Return 2
         ElseIf arrayComputerGameBoard(intYCord, intXCord) = 3 Then
             System.Diagnostics.Debug.WriteLine("Return: 3")
-            Return 3
             Diagnostics.Debug.WriteLine("Exit: checkHit")
+            Return 3
         ElseIf arrayComputerGameBoard(intYCord, intXCord) = 4 Then
             System.Diagnostics.Debug.WriteLine("Return: 4")
-            Return 4
             Diagnostics.Debug.WriteLine("Exit: checkHit")
+            Return 4
         ElseIf arrayComputerGameBoard(intYCord, intXCord) = 5 Then
             System.Diagnostics.Debug.WriteLine("Return: 5")
-            Return 5
             Diagnostics.Debug.WriteLine("Exit: checkHit")
+            Return 5
         End If
 
     End Function
