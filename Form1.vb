@@ -7,6 +7,9 @@
     Dim arrayComputerGameBoard(9, 9) As Integer 'Create board for the positions of the computers ships
     Dim arrayComputerGuessBoard(9, 9) As Integer 'board for the positions of the players guesses
 
+    'create global variables
+    Dim intTurn As Integer = 0 'a variable to keep track of who's turn it is ( 0 = player's turn, 1 = computer's turn)
+
     Private Sub readyPlayer1()
         'load the arrays for the players boards, fill them with water and print them to list boxes
 
@@ -21,6 +24,41 @@
             Next
             arrayPlayerGameBoard(x, 0) = 0 'set selected cell in column  x to 0
         Next
+
+        'Hard coded layout:
+        '    0 1 2 3 4 5 6 7 8 9
+
+        '0:  0 3 3 3 0 0 0 0 0 0
+        '1:  0 0 0 0 0 0 0 0 0 0
+        '2:  0 0 0 0 0 0 0 0 0 0
+        '3:  0 0 0 0 0 0 0 2 2 2
+        '4:  0 0 1 0 0 0 0 0 0 0
+        '5:  0 0 1 4 0 0 0 0 0 0
+        '6:  0 0 0 4 0 0 0 0 0 0
+        '7:  0 0 0 4 0 0 0 0 0 0
+        '8:  0 0 0 4 0 0 0 0 0 0
+        '9:  0 0 0 0 0 5 5 5 5 5
+
+        'add the ships from the hard coded layout above
+        System.Diagnostics.Debug.WriteLine("readyPlayer1: add ships to player game board")
+        arrayPlayerGameBoard(0, 1) = 3
+        arrayPlayerGameBoard(0, 2) = 3
+        arrayPlayerGameBoard(0, 3) = 3
+        arrayPlayerGameBoard(3, 7) = 2
+        arrayPlayerGameBoard(3, 8) = 2
+        arrayPlayerGameBoard(3, 9) = 2
+        arrayPlayerGameBoard(4, 2) = 1
+        arrayPlayerGameBoard(5, 2) = 1
+        arrayPlayerGameBoard(3, 5) = 4
+        arrayPlayerGameBoard(3, 6) = 4
+        arrayPlayerGameBoard(3, 7) = 4
+        arrayPlayerGameBoard(3, 8) = 4
+        arrayPlayerGameBoard(9, 5) = 5
+        arrayPlayerGameBoard(9, 6) = 5
+        arrayPlayerGameBoard(9, 7) = 5
+        arrayPlayerGameBoard(9, 8) = 5
+        arrayPlayerGameBoard(9, 9) = 5
+
 
         'print player game array to lsbPlayerGameBoard
         System.Diagnostics.Debug.WriteLine("readyPlayer1: add 'arrayPlayerGameBoard' to 'lsbPlayerGameBoard'")
@@ -64,6 +102,7 @@
         ' 3 = submarine (3 holes)
         ' 4 = battleship (4 holes)
         ' 5 = aircraft carrier (5 holes)
+        ' 6 = hit ship
 
         ' Step 1: Computer game array
 
@@ -122,12 +161,29 @@
         System.Diagnostics.Debug.WriteLine("Exit: readyPlayerComputer")
     End Sub
 
+    Private Sub updateTurnInfo()
+        'updates the text box to tell the user who's turn it is
+        System.Diagnostics.Debug.WriteLine("updateTurnInfo")
+        If intTurn = 0 Then
+            txtTurnInfo.Text = "Player's Turn"
+            System.Diagnostics.Debug.WriteLine("updateTurnInfo: Player's turn")
+        Else
+            txtTurnInfo.Text = "Computer's Turn"
+            System.Diagnostics.Debug.WriteLine("updateTurnInfo: Computer's turn")
+        End If
+        System.Diagnostics.Debug.WriteLine("Exit: updateTurnInfo")
+    End Sub
+
     Private Sub loadGame()
         System.Diagnostics.Debug.WriteLine("loadGame:")
+
         System.Diagnostics.Debug.WriteLine("Call: readyPlayer1")
         readyPlayer1() '(Yes I did Structure this program deliberately so I could write Ready Player 1)
         System.Diagnostics.Debug.WriteLine("Call: readyPlayerComputer")
         readyPlayerComputer()
+
+        System.Diagnostics.Debug.WriteLine("Call: updateTurnInfo")
+        updateTurnInfo()
 
         System.Diagnostics.Debug.WriteLine("Exit: loadGame")
     End Sub
@@ -274,8 +330,8 @@
         'return the new coordinates
     End Function
 
-    Public Function checkHit(cords As String)
-        'check and return what is located in arrayComputerGameBoard the coordinates provided
+    Public Function checkHit(cords As String, array As Array)
+        'check and return what is located in the given array the coordinates provided
         System.Diagnostics.Debug.WriteLine("checkHit")
         'Split the Coordinates:
 
@@ -288,27 +344,27 @@
         intXCord = Strings.Right(cords, 1) 'take the 1st (or 1st and 2nd) chars from the right
         Diagnostics.Debug.WriteLine("checkHit: X Cord: " & intXCord)
 
-        If arrayComputerGameBoard(intYCord, intXCord) = 0 Then
+        If array(intYCord, intXCord) = 0 Then
             System.Diagnostics.Debug.WriteLine("Return: 0")
             Diagnostics.Debug.WriteLine("Exit: checkHit")
             Return 0
-        ElseIf arrayComputerGameBoard(intYCord, intXCord) = 1 Then
+        ElseIf array(intYCord, intXCord) = 1 Then
             System.Diagnostics.Debug.WriteLine("Return: 1")
             Diagnostics.Debug.WriteLine("Exit: checkHit")
             Return 1
-        ElseIf arrayComputerGameBoard(intYCord, intXCord) = 2 Then
+        ElseIf array(intYCord, intXCord) = 2 Then
             System.Diagnostics.Debug.WriteLine("Return: 2")
             Diagnostics.Debug.WriteLine("Exit: checkHit")
             Return 2
-        ElseIf arrayComputerGameBoard(intYCord, intXCord) = 3 Then
+        ElseIf array(intYCord, intXCord) = 3 Then
             System.Diagnostics.Debug.WriteLine("Return: 3")
             Diagnostics.Debug.WriteLine("Exit: checkHit")
             Return 3
-        ElseIf arrayComputerGameBoard(intYCord, intXCord) = 4 Then
+        ElseIf array(intYCord, intXCord) = 4 Then
             System.Diagnostics.Debug.WriteLine("Return: 4")
             Diagnostics.Debug.WriteLine("Exit: checkHit")
             Return 4
-        ElseIf arrayComputerGameBoard(intYCord, intXCord) = 5 Then
+        ElseIf array(intYCord, intXCord) = 5 Then
             System.Diagnostics.Debug.WriteLine("Return: 5")
             Diagnostics.Debug.WriteLine("Exit: checkHit")
             Return 5
@@ -338,39 +394,41 @@
     Private Sub btnFire_Click(sender As Object, e As EventArgs) Handles btnFire.Click
         'when Fire button is clicked:
         System.Diagnostics.Debug.WriteLine("btnFire_Click")
-        Dim strUserInput As String
+        If intTurn = 0 Then 'if it's the player's turn
+            Dim strUserInput As String
 
-        Dim intLengthOfInput As Integer = txtPlayerGuess.Text.Length 'get the length of the user input
-        If intLengthOfInput > 0 Then 'if textbox isn't empty
+            Dim intLengthOfInput As Integer = txtPlayerGuess.Text.Length 'get the length of the user input
+            If intLengthOfInput > 0 Then 'if textbox isn't empty
 
-            strUserInput = txtPlayerGuess.Text
-            Diagnostics.Debug.WriteLine("btnFire_Click: user input: " & strUserInput) 'print user input to console
-            Dim strUserInputUpper As String
-            strUserInputUpper = guessToUpperCase(strUserInput) 'capitalise user input
+                strUserInput = txtPlayerGuess.Text
+                Diagnostics.Debug.WriteLine("btnFire_Click: user input: " & strUserInput) 'print user input to console
+                Dim strUserInputUpper As String
+                strUserInputUpper = guessToUpperCase(strUserInput) 'capitalise user input
 
-            If validateInput(strUserInputUpper) = True Then 'if input is real coordinates
-                Dim strFireOrder As String 'create a variable to send to the computer board to check for ships
-                strFireOrder = boardToArray(strUserInputUpper, intLengthOfInput) 'set strFireOrder to the board coordinates converted to array coordinates
-                'split strFireOrder into two integers for X and Y cords
-                Dim intFireOrderX As Integer = Strings.Left(strFireOrder, 1)
-                System.Diagnostics.Debug.WriteLine("btnFire_Click: intFireOrderX = " & intFireOrderX)
-                Dim intFireOrderY As Integer = Strings.Right(strFireOrder, 1)
-                System.Diagnostics.Debug.WriteLine("btnFire_Click: intFireOrderY = " & intFireOrderY)
+                If validateInput(strUserInputUpper) = True Then 'if input is real coordinates
+                    intTurn = 1 'use up player's turn
+                    Dim strFireOrder As String 'create a variable to send to the computer board to check for ships
+                    strFireOrder = boardToArray(strUserInputUpper, intLengthOfInput) 'set strFireOrder to the board coordinates converted to array coordinates
+                    'split strFireOrder into two integers for X and Y cords
+                    Dim intFireOrderX As Integer = Strings.Left(strFireOrder, 1)
+                    System.Diagnostics.Debug.WriteLine("btnFire_Click: intFireOrderX = " & intFireOrderX)
+                    Dim intFireOrderY As Integer = Strings.Right(strFireOrder, 1)
+                    System.Diagnostics.Debug.WriteLine("btnFire_Click: intFireOrderY = " & intFireOrderY)
 
-                'Call a function to check if fire order is a hit, sink or miss
-                System.Diagnostics.Debug.WriteLine("Call: checkHit")
+                    'Call a function to check if fire order is a hit, sink or miss
+                    System.Diagnostics.Debug.WriteLine("Call: checkHit")
 
-                'update player guess array
-                arrayPlayerGuessBoard(intFireOrderX, intFireOrderY) = checkHit(strFireOrder)
+                    'update player guess array
+                    arrayPlayerGuessBoard(intFireOrderX, intFireOrderY) = checkHit(strFireOrder, arrayComputerGameBoard)
 
-                If Not checkHit(strFireOrder) = 0 Then 'rudimentary system to tell player if hit or miss
-                    MessageBox.Show("Hit!")
-                Else
-                    MessageBox.Show("Miss!")
-                End If
-                'TODO: update this system so it is better
+                    If Not checkHit(strFireOrder, arrayComputerGameBoard) = 0 Then 'rudimentary system to tell player if hit or miss
+                        MessageBox.Show("Hit!")
+                    Else
+                        MessageBox.Show("Miss!")
+                    End If
+                    'TODO: update this system so it is better
 
-                System.Diagnostics.Debug.WriteLine("btnFire_Click: Set arrayPlayerGuessBoard(" & intFireOrderX & "," & intFireOrderY & ") to " & checkHit(strFireOrder))
+                    System.Diagnostics.Debug.WriteLine("btnFire_Click: Set arrayPlayerGuessBoard(" & intFireOrderX & "," & intFireOrderY & ") to " & checkHit(strFireOrder, arrayComputerGameBoard))
 
                     'redraw player guess board with new information in the array
 
@@ -379,11 +437,84 @@
 
                 End If
             Else
-            Diagnostics.Debug.WriteLine("btnFire_Click: No coordinates in box")
-            MessageBox.Show("Put some coordinates in the box!")
-            Diagnostics.Debug.WriteLine("Exit: btnFire_Click")
+                Diagnostics.Debug.WriteLine("btnFire_Click: No coordinates in box")
+                MessageBox.Show("Put some coordinates in the box!")
+            End If
+        Else
+            MessageBox.Show("Not your turn!")
+            System.Diagnostics.Debug.WriteLine("Not the player's turn yet")
         End If
+        System.Diagnostics.Debug.WriteLine("Call: updateTurnInfo")
+        updateTurnInfo()
         Diagnostics.Debug.WriteLine("Exit: btnFire_Click")
+    End Sub
+
+    Private Sub compTurn()
+        'handles the computer's turn
+        Diagnostics.Debug.WriteLine("compTurn")
+        If intTurn = 1 Then 'if its the computers turn
+            System.Threading.Thread.Sleep(1250) 'pause so the computer's turn doesn't run instantly
+            System.Diagnostics.Debug.WriteLine("compTurn: Pause for 750ms")
+            System.Diagnostics.Debug.WriteLine("compTurn: Pause done")
+            intTurn = 0 'use up the computers turn
+            Dim cordsTried As Boolean = True
+
+            'crate variables for coordinates
+            Dim intYCord As Integer = 0
+            Dim intXCord As Integer = 0
+
+            Do Until cordsTried = False 'generate coordinates that haven't been tried yet
+                System.Diagnostics.Debug.WriteLine("Start loop")
+                'generate random coordinates for attack
+
+                Randomize() 'Initialize the random-number generator
+                ' Generate random value between 0 and 9 for both coordinates
+                intXCord = CInt(Int((9 * Rnd()) + 0))
+                intYCord = CInt(Int((9 * Rnd()) + 0))
+                System.Diagnostics.Debug.WriteLine("compTurn: X cord: " & CStr(intXCord))
+                System.Diagnostics.Debug.WriteLine("compTurn: Y cord: " & CStr(intYCord))
+                If arrayComputerGuessBoard(intXCord, intYCord) = 1 Then 'if coordinates already tired
+                    cordsTried = True
+                    System.Diagnostics.Debug.WriteLine("compTurn: Coordinate already tired")
+                    System.Diagnostics.Debug.WriteLine("Loop again!")
+                ElseIf arrayComputerGuessBoard(intXCord, intYCord) = 0 Then 'if coordinates not tired
+                    cordsTried = False
+                    System.Diagnostics.Debug.WriteLine("compTurn: Coordinate not tired")
+
+                End If
+                System.Diagnostics.Debug.WriteLine("End loop")
+            Loop
+
+            Dim strCords As String = CStr(intXCord) & CStr(intYCord) 'put both coordinates in a string
+            'update computer guess array with coordinates that have been guessed
+            System.Diagnostics.Debug.WriteLine("compTurn: update arrayComputerGuessBoard(" & intXCord & "," & intYCord & ")")
+            arrayComputerGuessBoard(intXCord, intYCord) = 1 ' 1 = coordinate already tried
+
+            System.Diagnostics.Debug.WriteLine("Call: checkHit")
+            If checkHit(strCords, arrayPlayerGameBoard) = 0 Then 'if the attack is a miss
+                MessageBox.Show("The computer missed") 'tell the player it was a miss
+                System.Diagnostics.Debug.WriteLine("compTurn: Miss")
+            Else 'if the attack is a hit
+                arrayPlayerGameBoard(intXCord, intYCord) = 6 'add hit to player game array
+                updateBoard(arrayPlayerGameBoard, lsbPlayerGameBoard) 'update player game board to show hit
+                System.Diagnostics.Debug.WriteLine("compTurn: Hit!")
+                MessageBox.Show("You have been hit by the computer!") 'tell the player they have been hit
+            End If
+
+        ElseIf intTurn = 0 Then 'if it's not the computers turn
+            System.Diagnostics.Debug.WriteLine("Not the computers turn yet")
+            MessageBox.Show("Not the computer's turn yet")
+        End If
+        System.Diagnostics.Debug.WriteLine("Call: updateTurnInfo")
+        updateTurnInfo()
+        Diagnostics.Debug.WriteLine("Exit: compTurn")
+    End Sub
+
+    Private Sub btnEndTurn_Click(sender As Object, e As EventArgs) Handles btnEndTurn.Click
+        System.Diagnostics.Debug.WriteLine("btnEndTurn_Click")
+        System.Diagnostics.Debug.WriteLine("Call: compTurn")
+        compTurn()
+        System.Diagnostics.Debug.WriteLine("Exit: btnEndTurn_Click")
     End Sub
 
 End Class

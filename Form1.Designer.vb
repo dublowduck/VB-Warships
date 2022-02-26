@@ -55,6 +55,8 @@ Partial Class Form1
         Me.lblGameC = New System.Windows.Forms.Label()
         Me.lblGameB = New System.Windows.Forms.Label()
         Me.lblGameA = New System.Windows.Forms.Label()
+        Me.btnEndTurn = New System.Windows.Forms.Button()
+        Me.txtTurnInfo = New System.Windows.Forms.TextBox()
         Me.menuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -129,14 +131,14 @@ Partial Class Form1
         '
         'txtPlayerGuess
         '
-        Me.txtPlayerGuess.Location = New System.Drawing.Point(236, 86)
+        Me.txtPlayerGuess.Location = New System.Drawing.Point(222, 125)
         Me.txtPlayerGuess.Name = "txtPlayerGuess"
         Me.txtPlayerGuess.Size = New System.Drawing.Size(100, 23)
         Me.txtPlayerGuess.TabIndex = 7
         '
         'btnFire
         '
-        Me.btnFire.Location = New System.Drawing.Point(248, 140)
+        Me.btnFire.Location = New System.Drawing.Point(234, 179)
         Me.btnFire.Name = "btnFire"
         Me.btnFire.Size = New System.Drawing.Size(75, 23)
         Me.btnFire.TabIndex = 8
@@ -146,7 +148,7 @@ Partial Class Form1
         'lblCoordinates
         '
         Me.lblCoordinates.AutoSize = True
-        Me.lblCoordinates.Location = New System.Drawing.Point(248, 64)
+        Me.lblCoordinates.Location = New System.Drawing.Point(234, 103)
         Me.lblCoordinates.Name = "lblCoordinates"
         Me.lblCoordinates.Size = New System.Drawing.Size(74, 15)
         Me.lblCoordinates.TabIndex = 9
@@ -372,11 +374,31 @@ Partial Class Form1
         Me.lblGameA.TabIndex = 22
         Me.lblGameA.Text = "A"
         '
+        'btnEndTurn
+        '
+        Me.btnEndTurn.Location = New System.Drawing.Point(234, 254)
+        Me.btnEndTurn.Name = "btnEndTurn"
+        Me.btnEndTurn.Size = New System.Drawing.Size(68, 23)
+        Me.btnEndTurn.TabIndex = 33
+        Me.btnEndTurn.Text = "End turn"
+        Me.btnEndTurn.UseVisualStyleBackColor = True
+        '
+        'txtTurnInfo
+        '
+        Me.txtTurnInfo.Location = New System.Drawing.Point(222, 66)
+        Me.txtTurnInfo.Name = "txtTurnInfo"
+        Me.txtTurnInfo.ReadOnly = True
+        Me.txtTurnInfo.Size = New System.Drawing.Size(100, 23)
+        Me.txtTurnInfo.TabIndex = 34
+        Me.txtTurnInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.txtTurnInfo)
+        Me.Controls.Add(Me.btnEndTurn)
         Me.Controls.Add(Me.lblGameJ)
         Me.Controls.Add(Me.lblGameI)
         Me.Controls.Add(Me.lblGameH)
@@ -450,4 +472,6 @@ Partial Class Form1
     Friend WithEvents lblGameC As Label
     Friend WithEvents lblGameB As Label
     Friend WithEvents lblGameA As Label
+    Friend WithEvents btnEndTurn As Button
+    Friend WithEvents txtTurnInfo As TextBox
 End Class
