@@ -59,7 +59,6 @@
         arrayPlayerGameBoard(9, 8) = 5
         arrayPlayerGameBoard(9, 9) = 5
 
-
         'print player game array to lsbPlayerGameBoard
         System.Diagnostics.Debug.WriteLine("readyPlayer1: add 'arrayPlayerGameBoard' to 'lsbPlayerGameBoard'")
         Dim rows(9) As String
@@ -492,6 +491,8 @@
 
             System.Diagnostics.Debug.WriteLine("Call: checkHit")
             If checkHit(strCords, arrayPlayerGameBoard) = 0 Then 'if the attack is a miss
+                arrayPlayerGameBoard(intXCord, intYCord) = 7 'add miss to player game array
+                updateBoard(arrayPlayerGameBoard, lsbPlayerGameBoard) 'update player game board to show miss
                 MessageBox.Show("The computer missed") 'tell the player it was a miss
                 System.Diagnostics.Debug.WriteLine("compTurn: Miss")
             Else 'if the attack is a hit
