@@ -1,4 +1,4 @@
-Public Class Form1
+﻿Public Class Form1
 
     'create global arrays
 
@@ -529,9 +529,7 @@ Public Class Form1
     Private Function checkForWin(gameBoard As Array, gameBoardName As String)
         'check to see if the games has been won
         Diagnostics.Debug.WriteLine("checkForWin")
-        'Dim outcome As String
         Dim found As Boolean = False
-        'While found = False 'until ship is found in provided game board
         For x = 0 To UBound(gameBoard) 'for every column  x
             For y = 0 To UBound(gameBoard) 'for every row y
                 If gameBoard(x, y) = 1 Then 'if the square selected is a ship
@@ -542,7 +540,6 @@ Public Class Form1
                 End If
             Next
         Next
-        'End While
 
         If found = False Then 'if there are no ships left in gameboard
             If gameBoardName = "arrayPlayerGameBoard" Then 'if the board is the player's game board
