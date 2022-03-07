@@ -1,4 +1,4 @@
-﻿Public Class Form1
+Public Class Form1
 
     'create global arrays
 
@@ -443,6 +443,13 @@
             MessageBox.Show("Not your turn!")
             System.Diagnostics.Debug.WriteLine("Not the player's turn yet")
         End If
+        'check to see if this turn ended the game by beating the computer
+        If checkForWin(arrayComputerGameBoard, "arrayComputerGameBoard") = "computer" Then
+            MsgBox("You loose!")
+        ElseIf checkForWin(arrayComputerGameBoard, "arrayComputerGameBoard") = "player" Then
+            MsgBox("You win!")
+        End If
+
         System.Diagnostics.Debug.WriteLine("Call: updateTurnInfo")
         updateTurnInfo()
         Diagnostics.Debug.WriteLine("Exit: btnFire_Click")
@@ -506,10 +513,56 @@
             System.Diagnostics.Debug.WriteLine("Not the computers turn yet")
             MessageBox.Show("Not the computer's turn yet")
         End If
+
+        'check to see if this turn ended the game by beating the player
+        If checkForWin(arrayPlayerGameBoard, "arrayPlayerGameBoard") = "computer" Then
+            MsgBox("You loose!")
+        ElseIf checkForWin(arrayPlayerGameBoard, "arrayPlayerGameBoard") = "player" Then
+            MsgBox("You win!")
+        End If
+
         System.Diagnostics.Debug.WriteLine("Call: updateTurnInfo")
         updateTurnInfo()
         Diagnostics.Debug.WriteLine("Exit: compTurn")
     End Sub
+
+    Private Function checkForWin(gameBoard As Array, gameBoardName As String)
+        'check to see if the games has been won
+        Diagnostics.Debug.WriteLine("checkForWin")
+        'Dim outcome As String
+        Dim found As Boolean = False
+        'While found = False 'until ship is found in provided game board
+        For x = 0 To UBound(gameBoard) 'for every column  x
+            For y = 0 To UBound(gameBoard) 'for every row y
+                If gameBoard(x, y) = 1 Then 'if the square selected is a ship
+                    found = True
+                    Diagnostics.Debug.WriteLine("ship " & gameBoardName & " " & x & "," & y & " = " & gameBoard(x, y) & " (x,y)")
+                Else
+                    Diagnostics.Debug.WriteLine("no ship " & gameBoardName & " " & x & "," & y & " = " & gameBoard(x, y) & " (x,y)")
+                End If
+            Next
+        Next
+        'End While
+
+        If found = False Then 'if there are no ships left in gameboard
+            If gameBoardName = "arrayPlayerGameBoard" Then 'if the board is the player's game board
+                'computer wins
+                Diagnostics.Debug.WriteLine("checkForWin: Computer wins!")
+                Return "computer"
+            End If
+
+            If gameBoardName = "arrayComputerGameBoard" Then 'if the board is the computer's game board
+                'player wins
+                Diagnostics.Debug.WriteLine("checkForWin: Player wins!")
+                Return "player"
+            End If
+        Else 'if there are still ships left on the board
+            'nobody wins
+            Diagnostics.Debug.WriteLine("checkForWin: Nobody wins!")
+            Return "nobody"
+        End If
+        Diagnostics.Debug.WriteLine("Exit: checkForWin")
+    End Function
 
     Private Sub btnEndTurn_Click(sender As Object, e As EventArgs) Handles btnEndTurn.Click
         System.Diagnostics.Debug.WriteLine("btnEndTurn_Click")
