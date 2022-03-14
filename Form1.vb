@@ -1,4 +1,9 @@
-﻿Public Class Form1
+﻿Imports System.IO 'used for reading and writing files
+
+Public Class Form1
+
+    Public SR As StreamReader 'declare a Stream Reader for use later
+    Public SW As StreamWriter 'declare a Stream Writer for use later
 
     'create global arrays
 
@@ -8,7 +13,14 @@
     Dim arrayComputerGuessBoard(9, 9) As Integer 'board for the positions of the players guesses
 
     'create global variables
+    Dim HighscoreFilepath As String = "C:\Users\dublo\Desktop\highscore.txt" 'location of the highscore file
+
+    Dim playerName As String = "" 'a variable to store the player name for highscores
+    Dim winner As String = "" 'a variable for the name of the winner of a game
+    Dim highscore As Integer = 0
     Dim intTurn As Integer = 0 'a variable to keep track of who's turn it is ( 0 = player's turn, 1 = computer's turn)
+    Dim shotsFiredPlayer As Integer
+    Dim shotsFiredComputer As Integer
 
     Private Sub readyPlayer1()
         'load the arrays for the players boards, fill them with water and print them to list boxes
@@ -184,16 +196,21 @@
         System.Diagnostics.Debug.WriteLine("Call: updateTurnInfo")
         updateTurnInfo()
 
+        'get the player's name
+        Do Until playerName.Length > 0 'repeat until player enters a name
+            playerName = InputBox("Enter player name :")
+            If playerName.Length = 0 Then 'if player doesn't enter a name
+                MsgBox("Enter a player name")
+            End If
+            Diagnostics.Debug.WriteLine("loadGame: Player name is: '" & playerName & "'")
+        Loop
+
         System.Diagnostics.Debug.WriteLine("Exit: loadGame")
     End Sub
 
     Private Sub btnForm1Exit_Click(sender As Object, e As EventArgs) Handles btnForm1Exit.Click
         System.Diagnostics.Debug.WriteLine("EXIT GAME")
         Me.Close() 'close the game
-    End Sub
-
-    Private Sub developerSettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles developerSettingsToolStripMenuItem.Click
-        devSettings.Show() 'open the developer settings window
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -406,6 +423,7 @@
 
                 If validateInput(strUserInputUpper) = True Then 'if input is real coordinates
                     intTurn = 1 'use up player's turn
+                    shotsFiredPlayer += 1 'add 1 to shotsFiredPlayer for determining the score if the player wins
                     Dim strFireOrder As String 'create a variable to send to the computer board to check for ships
                     strFireOrder = boardToArray(strUserInputUpper, intLengthOfInput) 'set strFireOrder to the board coordinates converted to array coordinates
                     'split strFireOrder into two integers for X and Y cords
@@ -459,10 +477,11 @@
         'handles the computer's turn
         Diagnostics.Debug.WriteLine("compTurn")
         If intTurn = 1 Then 'if its the computers turn
-            System.Threading.Thread.Sleep(1250) 'pause so the computer's turn doesn't run instantly
+            'System.Threading.Thread.Sleep(1250) 'pause so the computer's turn doesn't run instantly
             System.Diagnostics.Debug.WriteLine("compTurn: Pause for 750ms")
             System.Diagnostics.Debug.WriteLine("compTurn: Pause done")
             intTurn = 0 'use up the computers turn
+            shotsFiredComputer += 1 'add 1 to shotsFiredComputer for determining the score if the computer wins
             Dim cordsTried As Boolean = True
 
             'crate variables for coordinates
@@ -526,6 +545,74 @@
         Diagnostics.Debug.WriteLine("Exit: compTurn")
     End Sub
 
+    Private Sub updateScore(winner As String)
+        'add new scores to highscore file then display score to player as message box
+        System.Diagnostics.Debug.WriteLine("updateScore")
+        Try
+            If Not My.Computer.FileSystem.FileExists(HighscoreFilepath) Then 'if file doesn't exist
+                Diagnostics.Debug.WriteLine("updateScore: Highscore file doesn't exist")
+                'create highscore.txt file
+                SW = New StreamWriter(HighscoreFilepath, True)
+                SW.WriteLine("'Game' Highscores:")
+                SW.WriteLine("------------------")
+                SW.WriteLine(System.Environment.NewLine)
+                SW.Close()
+                Diagnostics.Debug.WriteLine("updateScore: Created highscore file at '" & HighscoreFilepath & "'")
+            End If
+
+            If winner = "computer" Then 'if the computer has won
+                highscore = shotsFiredComputer 'this is actually a low score system
+                Try 'add new score to highscore file
+                    SW = New StreamWriter(HighscoreFilepath, True) 'open highscore.txt and append new scores to it
+                    SW.WriteLine(CStr(highscore) & " " & "computer")
+                    SW.Close()
+                    Diagnostics.Debug.WriteLine("updateScore: added computer with a highscore of " & highscore & "to highscore.txt")
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            Else 'if the player has won
+                highscore = shotsFiredPlayer 'this is actually a low score system
+                Try 'add new score to highscore file
+                    SW = New StreamWriter(HighscoreFilepath, True) 'open highscore.txt and append new scores to it
+                    SW.WriteLine(CStr(highscore) & " " & playerName)
+                    SW.Close()
+                    Diagnostics.Debug.WriteLine("updateScore: added " & winner & " with a highscore of " & highscore & "to highscore.txt")
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                End Try
+            End If
+
+            displayAddedHighscore() 'print the winner and they're score to a messagebox
+        Catch ex As Exception
+            MsgBox("Something has gone wrong", "Error", MsgBoxStyle.Exclamation)
+        End Try
+        System.Diagnostics.Debug.WriteLine("Exit: updateScore")
+    End Sub
+
+    Private Sub displayAddedHighscore()
+        'display the highscore just achieved to the player
+        System.Diagnostics.Debug.WriteLine("displayAddedHighscore")
+        MessageBox.Show("Player " + "'" + winner + "' added score of '" + CStr(highscore) + "'", "Highscore updated") 'say what your adding to the highscore.txt file
+        System.Diagnostics.Debug.WriteLine("displayAddedHighscore: Player " + "'" + winner + "' added score of '" + CStr(highscore) + "'")
+        System.Diagnostics.Debug.WriteLine("Exit: displayAddedHighscore")
+    End Sub
+
+    Private Sub showHighscores() 'read the highscore.txt file and display as message box
+        Diagnostics.Debug.WriteLine("showHighscores")
+        Try
+            SR = New StreamReader(HighscoreFilepath)
+            Dim filecontense As String
+            filecontense = SR.ReadToEnd()
+            MessageBox.Show(filecontense)
+            SR.Close()
+        Catch ex As System.IO.FileNotFoundException
+            MessageBox.Show("'highscore.txt' file not found")
+            Diagnostics.Debug.WriteLine("showHighscores: 'highscore.txt' file not found")
+        Catch ex As Exception
+        End Try
+        Diagnostics.Debug.WriteLine("Exit: showHighscores")
+    End Sub
+
     Private Function checkForWin(gameBoard As Array, gameBoardName As String)
         'check to see if the games has been won
         Diagnostics.Debug.WriteLine("checkForWin")
@@ -541,16 +628,22 @@
             Next
         Next
 
-        If found = False Then 'if there are no ships left in gameboard
+        If found = False Then 'if there are no ships left on the gameboard
             If gameBoardName = "arrayPlayerGameBoard" Then 'if the board is the player's game board
                 'computer wins
+                winner = "computer"
                 Diagnostics.Debug.WriteLine("checkForWin: Computer wins!")
+                Diagnostics.Debug.WriteLine("checkForWin: call updateScore")
+                updateScore("computer") 'update the highscore file with the new score
                 Return "computer"
             End If
 
             If gameBoardName = "arrayComputerGameBoard" Then 'if the board is the computer's game board
                 'player wins
+                winner = playerName
                 Diagnostics.Debug.WriteLine("checkForWin: Player wins!")
+                Diagnostics.Debug.WriteLine("checkForWin: call updateScore")
+                updateScore("player") 'update the highscore file with the new score
                 Return "player"
             End If
         Else 'if there are still ships left on the board

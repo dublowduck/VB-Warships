@@ -23,9 +23,6 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.btnForm1Exit = New System.Windows.Forms.Button()
-        Me.menuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.toolStripTools = New System.Windows.Forms.ToolStripMenuItem()
-        Me.developerSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.lsbPlayerGuessBoard = New System.Windows.Forms.ListBox()
         Me.lsbPlayerGameBoard = New System.Windows.Forms.ListBox()
         Me.lblGuessBoard = New System.Windows.Forms.Label()
@@ -58,7 +55,7 @@ Partial Class Form1
         Me.btnEndTurn = New System.Windows.Forms.Button()
         Me.txtTurnInfo = New System.Windows.Forms.TextBox()
         Me.picVBWarships = New System.Windows.Forms.PictureBox()
-        Me.menuStrip1.SuspendLayout()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.picVBWarships, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -70,28 +67,6 @@ Partial Class Form1
         Me.btnForm1Exit.TabIndex = 1
         Me.btnForm1Exit.Text = "Exit"
         Me.btnForm1Exit.UseVisualStyleBackColor = True
-        '
-        'menuStrip1
-        '
-        Me.menuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.toolStripTools})
-        Me.menuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.menuStrip1.Name = "menuStrip1"
-        Me.menuStrip1.Size = New System.Drawing.Size(593, 24)
-        Me.menuStrip1.TabIndex = 2
-        Me.menuStrip1.Text = "MenuStrip1"
-        '
-        'toolStripTools
-        '
-        Me.toolStripTools.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.developerSettingsToolStripMenuItem})
-        Me.toolStripTools.Name = "toolStripTools"
-        Me.toolStripTools.Size = New System.Drawing.Size(46, 20)
-        Me.toolStripTools.Text = "Tools"
-        '
-        'developerSettingsToolStripMenuItem
-        '
-        Me.developerSettingsToolStripMenuItem.Name = "developerSettingsToolStripMenuItem"
-        Me.developerSettingsToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
-        Me.developerSettingsToolStripMenuItem.Text = "Developer Settings"
         '
         'lsbPlayerGuessBoard
         '
@@ -408,12 +383,22 @@ Partial Class Form1
         Me.picVBWarships.TabIndex = 35
         Me.picVBWarships.TabStop = False
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(181, 403)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 36
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkOrange
         Me.ClientSize = New System.Drawing.Size(593, 450)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.picVBWarships)
         Me.Controls.Add(Me.txtTurnInfo)
         Me.Controls.Add(Me.btnEndTurn)
@@ -446,22 +431,15 @@ Partial Class Form1
         Me.Controls.Add(Me.lblGuessBoard)
         Me.Controls.Add(Me.lsbPlayerGameBoard)
         Me.Controls.Add(Me.lsbPlayerGuessBoard)
-        Me.Controls.Add(Me.menuStrip1)
         Me.Controls.Add(Me.btnForm1Exit)
-        Me.MainMenuStrip = Me.menuStrip1
         Me.Name = "Form1"
         Me.Text = "VB-Warships"
-        Me.menuStrip1.ResumeLayout(False)
-        Me.menuStrip1.PerformLayout()
         CType(Me.picVBWarships, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnForm1Exit As Button
-    Friend WithEvents menuStrip1 As MenuStrip
-    Friend WithEvents toolStripTools As ToolStripMenuItem
-    Friend WithEvents developerSettingsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents lsbPlayerGuessBoard As ListBox
     Friend WithEvents lsbPlayerGameBoard As ListBox
     Friend WithEvents lblGuessBoard As Label
@@ -494,4 +472,5 @@ Partial Class Form1
     Friend WithEvents btnEndTurn As Button
     Friend WithEvents txtTurnInfo As TextBox
     Friend WithEvents picVBWarships As PictureBox
+    Friend WithEvents Button1 As Button
 End Class
