@@ -55,13 +55,12 @@ Partial Class Form1
         Me.btnEndTurn = New System.Windows.Forms.Button()
         Me.txtTurnInfo = New System.Windows.Forms.TextBox()
         Me.picVBWarships = New System.Windows.Forms.PictureBox()
-        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.picVBWarships, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnForm1Exit
         '
-        Me.btnForm1Exit.Location = New System.Drawing.Point(38, 416)
+        Me.btnForm1Exit.Location = New System.Drawing.Point(32, 403)
         Me.btnForm1Exit.Name = "btnForm1Exit"
         Me.btnForm1Exit.Size = New System.Drawing.Size(75, 23)
         Me.btnForm1Exit.TabIndex = 1
@@ -76,6 +75,7 @@ Partial Class Form1
         Me.lsbPlayerGuessBoard.ItemHeight = 21
         Me.lsbPlayerGuessBoard.Location = New System.Drawing.Point(32, 157)
         Me.lsbPlayerGuessBoard.Name = "lsbPlayerGuessBoard"
+        Me.lsbPlayerGuessBoard.SelectionMode = System.Windows.Forms.SelectionMode.None
         Me.lsbPlayerGuessBoard.Size = New System.Drawing.Size(156, 214)
         Me.lsbPlayerGuessBoard.TabIndex = 3
         '
@@ -87,6 +87,7 @@ Partial Class Form1
         Me.lsbPlayerGameBoard.ItemHeight = 21
         Me.lsbPlayerGameBoard.Location = New System.Drawing.Point(363, 157)
         Me.lsbPlayerGameBoard.Name = "lsbPlayerGameBoard"
+        Me.lsbPlayerGameBoard.SelectionMode = System.Windows.Forms.SelectionMode.None
         Me.lsbPlayerGameBoard.Size = New System.Drawing.Size(156, 214)
         Me.lsbPlayerGameBoard.TabIndex = 4
         '
@@ -110,7 +111,7 @@ Partial Class Form1
         '
         'txtPlayerGuess
         '
-        Me.txtPlayerGuess.Location = New System.Drawing.Point(213, 220)
+        Me.txtPlayerGuess.Location = New System.Drawing.Point(213, 222)
         Me.txtPlayerGuess.Name = "txtPlayerGuess"
         Me.txtPlayerGuess.Size = New System.Drawing.Size(100, 23)
         Me.txtPlayerGuess.TabIndex = 7
@@ -355,7 +356,7 @@ Partial Class Form1
         '
         'btnEndTurn
         '
-        Me.btnEndTurn.Location = New System.Drawing.Point(232, 346)
+        Me.btnEndTurn.Location = New System.Drawing.Point(225, 346)
         Me.btnEndTurn.Name = "btnEndTurn"
         Me.btnEndTurn.Size = New System.Drawing.Size(68, 23)
         Me.btnEndTurn.TabIndex = 33
@@ -383,22 +384,12 @@ Partial Class Form1
         Me.picVBWarships.TabIndex = 35
         Me.picVBWarships.TabStop = False
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(181, 403)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 36
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkOrange
         Me.ClientSize = New System.Drawing.Size(593, 450)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.picVBWarships)
         Me.Controls.Add(Me.txtTurnInfo)
         Me.Controls.Add(Me.btnEndTurn)
@@ -472,5 +463,4 @@ Partial Class Form1
     Friend WithEvents btnEndTurn As Button
     Friend WithEvents txtTurnInfo As TextBox
     Friend WithEvents picVBWarships As PictureBox
-    Friend WithEvents Button1 As Button
 End Class
