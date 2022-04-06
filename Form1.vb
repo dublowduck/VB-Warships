@@ -13,14 +13,14 @@ Public Class Form1
     Dim arrayComputerGuessBoard(9, 9) As Integer 'board for the positions of the players guesses
 
     'create global variables
-    Dim scoreFilepath As String = "C:\Users\dublo\Desktop\score.txt" 'location of the score file
+    Dim strScoreFilepath As String = "C:\Users\dublo\Desktop\score.txt" 'location of the score file
 
-    Dim playerName As String = "" 'a variable to store the player name for scores
-    Dim winner As String = "" 'a variable for the name of the winner of a game
-    Dim score As Integer = 0
+    Dim strPlayerName As String = "" 'a variable to store the player name for scores
+    Dim strWinner As String = "" 'a variable for the name of the Winner of a game
+    Dim intScore As Integer = 0
     Dim intTurn As Integer = 0 'a variable to keep track of who's turn it is ( 0 = player's turn, 1 = computer's turn)
-    Dim shotsFiredPlayer As Integer
-    Dim shotsFiredComputer As Integer
+    Dim intShotsFiredPlayer As Integer
+    Dim intShotsFiredComputer As Integer
 
     Private Sub readyPlayer1()
         'load the arrays for the players boards, fill them with water and print them to list boxes
@@ -197,12 +197,12 @@ Public Class Form1
         updateTurnInfo()
 
         'get the player's name
-        Do Until playerName.Length > 0 'repeat until player enters a name
-            playerName = InputBox("Enter player name :")
-            If playerName.Length = 0 Then 'if player doesn't enter a name
+        Do Until strPlayerName.Length > 0 'repeat until player enters a name
+            strPlayerName = InputBox("Enter player name :")
+            If strPlayerName.Length = 0 Then 'if player doesn't enter a name
                 MsgBox("Enter a player name")
             End If
-            Diagnostics.Debug.WriteLine("loadGame: Player name is: '" & playerName & "'")
+            Diagnostics.Debug.WriteLine("loadGame: Player name is: '" & strPlayerName & "'")
         Loop
 
         System.Diagnostics.Debug.WriteLine("Exit: loadGame")
@@ -423,7 +423,7 @@ Public Class Form1
 
                 If validateInput(strUserInputUpper) = True Then 'if input is real coordinates
                     intTurn = 1 'use up player's turn
-                    shotsFiredPlayer += 1 'add 1 to shotsFiredPlayer for determining the score if the player wins
+                    intShotsFiredPlayer += 1 'add 1 to intShotsFiredPlayer for determining the score if the player wins
                     Dim strFireOrder As String 'create a variable to send to the computer board to check for ships
                     strFireOrder = boardToArray(strUserInputUpper, intLengthOfInput) 'set strFireOrder to the board coordinates converted to array coordinates
                     'split strFireOrder into two integers for X and Y cords
@@ -481,14 +481,14 @@ Public Class Form1
             System.Diagnostics.Debug.WriteLine("compTurn: Pause for 750ms")
             System.Diagnostics.Debug.WriteLine("compTurn: Pause done")
             intTurn = 0 'use up the computers turn
-            shotsFiredComputer += 1 'add 1 to shotsFiredComputer for determining the score if the computer wins
-            Dim cordsTried As Boolean = True
+            intShotsFiredComputer += 1 'add 1 to intShotsFiredComputer for determining the score if the computer wins
+            Dim blnCordsTried As Boolean = True
 
             'crate variables for coordinates
             Dim intYCord As Integer = 0
             Dim intXCord As Integer = 0
 
-            Do Until cordsTried = False 'generate coordinates that haven't been tried yet
+            Do Until blnCordsTried = False 'generate coordinates that haven't been tried yet
                 System.Diagnostics.Debug.WriteLine("Start loop")
                 'generate random coordinates for attack
 
@@ -499,11 +499,11 @@ Public Class Form1
                 System.Diagnostics.Debug.WriteLine("compTurn: X cord: " & CStr(intXCord))
                 System.Diagnostics.Debug.WriteLine("compTurn: Y cord: " & CStr(intYCord))
                 If arrayComputerGuessBoard(intXCord, intYCord) = 1 Then 'if coordinates already tired
-                    cordsTried = True
+                    blnCordsTried = True
                     System.Diagnostics.Debug.WriteLine("compTurn: Coordinate already tired")
                     System.Diagnostics.Debug.WriteLine("Loop again!")
                 ElseIf arrayComputerGuessBoard(intXCord, intYCord) = 0 Then 'if coordinates not tired
-                    cordsTried = False
+                    blnCordsTried = False
                     System.Diagnostics.Debug.WriteLine("compTurn: Coordinate not tired")
 
                 End If
@@ -545,38 +545,38 @@ Public Class Form1
         Diagnostics.Debug.WriteLine("Exit: compTurn")
     End Sub
 
-    Private Sub updateScore(winner As String)
+    Private Sub updateScore(strWinner As String)
         'add new scores to score file then display score to player as message box
         System.Diagnostics.Debug.WriteLine("updateScore")
         Try
-            If Not My.Computer.FileSystem.FileExists(scoreFilepath) Then 'if file doesn't exist
+            If Not My.Computer.FileSystem.FileExists(strScoreFilepath) Then 'if file doesn't exist
                 Diagnostics.Debug.WriteLine("updateScore: score file doesn't exist")
                 'create score.txt file
-                SW = New StreamWriter(scoreFilepath, True)
+                SW = New StreamWriter(strScoreFilepath, True)
                 SW.WriteLine("'Game' scores:")
                 SW.WriteLine("------------------")
                 SW.WriteLine(System.Environment.NewLine)
                 SW.Close()
-                Diagnostics.Debug.WriteLine("updateScore: Created score file at '" & scoreFilepath & "'")
+                Diagnostics.Debug.WriteLine("updateScore: Created score file at '" & strScoreFilepath & "'")
             End If
 
-            If winner = "computer" Then 'if the computer has won
-                score = shotsFiredComputer 'this is actually a low score system
+            If strWinner = "computer" Then 'if the computer has won
+                intScore = intShotsFiredComputer 'this is actually a low score system
                 Try 'add new score to score file
-                    SW = New StreamWriter(scoreFilepath, True) 'open score.txt and append new scores to it
-                    SW.WriteLine(CStr(score) & " " & "computer")
+                    SW = New StreamWriter(strScoreFilepath, True) 'open score.txt and append new scores to it
+                    SW.WriteLine(CStr(intScore) & " " & "computer")
                     SW.Close()
-                    Diagnostics.Debug.WriteLine("updateScore: added computer with a score of " & score & "to score.txt")
+                    Diagnostics.Debug.WriteLine("updateScore: added computer with a score of " & intScore & "to score.txt")
                 Catch ex As Exception
                     MessageBox.Show(ex.Message)
                 End Try
             Else 'if the player has won
-                score = shotsFiredPlayer 'this is actually a low score system
+                intScore = intShotsFiredPlayer 'this is actually a low score system
                 Try 'add new score to score file
-                    SW = New StreamWriter(scoreFilepath, True) 'open score.txt and append new scores to it
-                    SW.WriteLine(CStr(score) & " " & playerName)
+                    SW = New StreamWriter(strScoreFilepath, True) 'open score.txt and append new scores to it
+                    SW.WriteLine(CStr(intScore) & " " & strPlayerName)
                     SW.Close()
-                    Diagnostics.Debug.WriteLine("updateScore: added " & winner & " with a score of " & score & "to score.txt")
+                    Diagnostics.Debug.WriteLine("updateScore: added " & strWinner & " with a score of " & intScore & "to score.txt")
                 Catch ex As Exception
                     MessageBox.Show(ex.Message)
                 End Try
@@ -592,18 +592,18 @@ Public Class Form1
     Private Sub displayAddedscore()
         'display the score just achieved to the player
         System.Diagnostics.Debug.WriteLine("displayAddedscore")
-        MessageBox.Show("Player " + "'" + winner + "' added score of '" + CStr(score) + "'", "Score updated") 'say what your adding to the score.txt file
-        System.Diagnostics.Debug.WriteLine("displayAddedscore: Player " + "'" + winner + "' added score of '" + CStr(score) + "'")
+        MessageBox.Show("Player " + "'" + strWinner + "' added score of '" + CStr(intScore) + "'", "Score updated") 'say what your adding to the score.txt file
+        System.Diagnostics.Debug.WriteLine("displayAddedscore: Player " + "'" + strWinner + "' added score of '" + CStr(intScore) + "'")
         System.Diagnostics.Debug.WriteLine("Exit: displayAddedscore")
     End Sub
 
     Private Sub showscores() 'read the score.txt file and display as message box
         Diagnostics.Debug.WriteLine("showscores")
         Try
-            SR = New StreamReader(scoreFilepath)
-            Dim filecontense As String
-            filecontense = SR.ReadToEnd()
-            MessageBox.Show(filecontense)
+            SR = New StreamReader(strScoreFilepath)
+            Dim strFileContense As String
+            strFileContense = SR.ReadToEnd()
+            MessageBox.Show(strFileContense)
             SR.Close()
         Catch ex As System.IO.FileNotFoundException
             MessageBox.Show("'score.txt' file not found")
@@ -616,11 +616,11 @@ Public Class Form1
     Private Function checkForWin(gameBoard As Array, gameBoardName As String)
         'check to see if the games has been won
         Diagnostics.Debug.WriteLine("checkForWin")
-        Dim found As Boolean = False
+        Dim blnFound As Boolean = False
         For x = 0 To UBound(gameBoard) 'for every column  x
             For y = 0 To UBound(gameBoard) 'for every row y
                 If gameBoard(x, y) = 1 Then 'if the square selected is a ship
-                    found = True
+                    blnFound = True
                     Diagnostics.Debug.WriteLine("ship " & gameBoardName & " " & x & "," & y & " = " & gameBoard(x, y) & " (x,y)")
                 Else
                     Diagnostics.Debug.WriteLine("no ship " & gameBoardName & " " & x & "," & y & " = " & gameBoard(x, y) & " (x,y)")
@@ -628,10 +628,10 @@ Public Class Form1
             Next
         Next
 
-        If found = False Then 'if there are no ships left on the gameboard
+        If blnFound = False Then 'if there are no ships left on the gameboard
             If gameBoardName = "arrayPlayerGameBoard" Then 'if the board is the player's game board
                 'computer wins
-                winner = "computer"
+                strWinner = "computer"
                 Diagnostics.Debug.WriteLine("checkForWin: Computer wins!")
                 Diagnostics.Debug.WriteLine("checkForWin: call updateScore")
                 updateScore("computer") 'update the score file with the new score
@@ -640,7 +640,7 @@ Public Class Form1
 
             If gameBoardName = "arrayComputerGameBoard" Then 'if the board is the computer's game board
                 'player wins
-                winner = playerName
+                strWinner = strPlayerName
                 Diagnostics.Debug.WriteLine("checkForWin: Player wins!")
                 Diagnostics.Debug.WriteLine("checkForWin: call updateScore")
                 updateScore("player") 'update the score file with the new score
