@@ -13,11 +13,11 @@ Public Class Form1
     Dim arrayComputerGuessBoard(9, 9) As Integer 'board for the positions of the players guesses
 
     'create global variables
-    Dim HighscoreFilepath As String = "C:\Users\dublo\Desktop\highscore.txt" 'location of the highscore file
+    Dim scoreFilepath As String = "C:\Users\dublo\Desktop\score.txt" 'location of the score file
 
-    Dim playerName As String = "" 'a variable to store the player name for highscores
+    Dim playerName As String = "" 'a variable to store the player name for scores
     Dim winner As String = "" 'a variable for the name of the winner of a game
-    Dim highscore As Integer = 0
+    Dim score As Integer = 0
     Dim intTurn As Integer = 0 'a variable to keep track of who's turn it is ( 0 = player's turn, 1 = computer's turn)
     Dim shotsFiredPlayer As Integer
     Dim shotsFiredComputer As Integer
@@ -546,71 +546,71 @@ Public Class Form1
     End Sub
 
     Private Sub updateScore(winner As String)
-        'add new scores to highscore file then display score to player as message box
+        'add new scores to score file then display score to player as message box
         System.Diagnostics.Debug.WriteLine("updateScore")
         Try
-            If Not My.Computer.FileSystem.FileExists(HighscoreFilepath) Then 'if file doesn't exist
-                Diagnostics.Debug.WriteLine("updateScore: Highscore file doesn't exist")
-                'create highscore.txt file
-                SW = New StreamWriter(HighscoreFilepath, True)
-                SW.WriteLine("'Game' Highscores:")
+            If Not My.Computer.FileSystem.FileExists(scoreFilepath) Then 'if file doesn't exist
+                Diagnostics.Debug.WriteLine("updateScore: score file doesn't exist")
+                'create score.txt file
+                SW = New StreamWriter(scoreFilepath, True)
+                SW.WriteLine("'Game' scores:")
                 SW.WriteLine("------------------")
                 SW.WriteLine(System.Environment.NewLine)
                 SW.Close()
-                Diagnostics.Debug.WriteLine("updateScore: Created highscore file at '" & HighscoreFilepath & "'")
+                Diagnostics.Debug.WriteLine("updateScore: Created score file at '" & scoreFilepath & "'")
             End If
 
             If winner = "computer" Then 'if the computer has won
-                highscore = shotsFiredComputer 'this is actually a low score system
-                Try 'add new score to highscore file
-                    SW = New StreamWriter(HighscoreFilepath, True) 'open highscore.txt and append new scores to it
-                    SW.WriteLine(CStr(highscore) & " " & "computer")
+                score = shotsFiredComputer 'this is actually a low score system
+                Try 'add new score to score file
+                    SW = New StreamWriter(scoreFilepath, True) 'open score.txt and append new scores to it
+                    SW.WriteLine(CStr(score) & " " & "computer")
                     SW.Close()
-                    Diagnostics.Debug.WriteLine("updateScore: added computer with a highscore of " & highscore & "to highscore.txt")
+                    Diagnostics.Debug.WriteLine("updateScore: added computer with a score of " & score & "to score.txt")
                 Catch ex As Exception
                     MessageBox.Show(ex.Message)
                 End Try
             Else 'if the player has won
-                highscore = shotsFiredPlayer 'this is actually a low score system
-                Try 'add new score to highscore file
-                    SW = New StreamWriter(HighscoreFilepath, True) 'open highscore.txt and append new scores to it
-                    SW.WriteLine(CStr(highscore) & " " & playerName)
+                score = shotsFiredPlayer 'this is actually a low score system
+                Try 'add new score to score file
+                    SW = New StreamWriter(scoreFilepath, True) 'open score.txt and append new scores to it
+                    SW.WriteLine(CStr(score) & " " & playerName)
                     SW.Close()
-                    Diagnostics.Debug.WriteLine("updateScore: added " & winner & " with a highscore of " & highscore & "to highscore.txt")
+                    Diagnostics.Debug.WriteLine("updateScore: added " & winner & " with a score of " & score & "to score.txt")
                 Catch ex As Exception
                     MessageBox.Show(ex.Message)
                 End Try
             End If
 
-            displayAddedHighscore() 'print the winner and they're score to a messagebox
+            displayAddedscore() 'print the winner and they're score to a messagebox
         Catch ex As Exception
             MsgBox("Something has gone wrong", "Error", MsgBoxStyle.Exclamation)
         End Try
         System.Diagnostics.Debug.WriteLine("Exit: updateScore")
     End Sub
 
-    Private Sub displayAddedHighscore()
-        'display the highscore just achieved to the player
-        System.Diagnostics.Debug.WriteLine("displayAddedHighscore")
-        MessageBox.Show("Player " + "'" + winner + "' added score of '" + CStr(highscore) + "'", "Highscore updated") 'say what your adding to the highscore.txt file
-        System.Diagnostics.Debug.WriteLine("displayAddedHighscore: Player " + "'" + winner + "' added score of '" + CStr(highscore) + "'")
-        System.Diagnostics.Debug.WriteLine("Exit: displayAddedHighscore")
+    Private Sub displayAddedscore()
+        'display the score just achieved to the player
+        System.Diagnostics.Debug.WriteLine("displayAddedscore")
+        MessageBox.Show("Player " + "'" + winner + "' added score of '" + CStr(score) + "'", "Score updated") 'say what your adding to the score.txt file
+        System.Diagnostics.Debug.WriteLine("displayAddedscore: Player " + "'" + winner + "' added score of '" + CStr(score) + "'")
+        System.Diagnostics.Debug.WriteLine("Exit: displayAddedscore")
     End Sub
 
-    Private Sub showHighscores() 'read the highscore.txt file and display as message box
-        Diagnostics.Debug.WriteLine("showHighscores")
+    Private Sub showscores() 'read the score.txt file and display as message box
+        Diagnostics.Debug.WriteLine("showscores")
         Try
-            SR = New StreamReader(HighscoreFilepath)
+            SR = New StreamReader(scoreFilepath)
             Dim filecontense As String
             filecontense = SR.ReadToEnd()
             MessageBox.Show(filecontense)
             SR.Close()
         Catch ex As System.IO.FileNotFoundException
-            MessageBox.Show("'highscore.txt' file not found")
-            Diagnostics.Debug.WriteLine("showHighscores: 'highscore.txt' file not found")
+            MessageBox.Show("'score.txt' file not found")
+            Diagnostics.Debug.WriteLine("showscores: 'score.txt' file not found")
         Catch ex As Exception
         End Try
-        Diagnostics.Debug.WriteLine("Exit: showHighscores")
+        Diagnostics.Debug.WriteLine("Exit: showscores")
     End Sub
 
     Private Function checkForWin(gameBoard As Array, gameBoardName As String)
@@ -634,7 +634,7 @@ Public Class Form1
                 winner = "computer"
                 Diagnostics.Debug.WriteLine("checkForWin: Computer wins!")
                 Diagnostics.Debug.WriteLine("checkForWin: call updateScore")
-                updateScore("computer") 'update the highscore file with the new score
+                updateScore("computer") 'update the score file with the new score
                 Return "computer"
             End If
 
@@ -643,7 +643,7 @@ Public Class Form1
                 winner = playerName
                 Diagnostics.Debug.WriteLine("checkForWin: Player wins!")
                 Diagnostics.Debug.WriteLine("checkForWin: call updateScore")
-                updateScore("player") 'update the highscore file with the new score
+                updateScore("player") 'update the score file with the new score
                 Return "player"
             End If
         Else 'if there are still ships left on the board
