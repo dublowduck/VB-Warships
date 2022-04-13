@@ -60,7 +60,7 @@ Partial Class Form1
         '
         'btnForm1Exit
         '
-        Me.btnForm1Exit.Location = New System.Drawing.Point(32, 403)
+        Me.btnForm1Exit.Location = New System.Drawing.Point(43, 491)
         Me.btnForm1Exit.Name = "btnForm1Exit"
         Me.btnForm1Exit.Size = New System.Drawing.Size(75, 23)
         Me.btnForm1Exit.TabIndex = 1
@@ -73,10 +73,10 @@ Partial Class Form1
         Me.lsbPlayerGuessBoard.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lsbPlayerGuessBoard.FormattingEnabled = True
         Me.lsbPlayerGuessBoard.ItemHeight = 21
-        Me.lsbPlayerGuessBoard.Location = New System.Drawing.Point(32, 157)
+        Me.lsbPlayerGuessBoard.Location = New System.Drawing.Point(43, 227)
         Me.lsbPlayerGuessBoard.Name = "lsbPlayerGuessBoard"
         Me.lsbPlayerGuessBoard.SelectionMode = System.Windows.Forms.SelectionMode.None
-        Me.lsbPlayerGuessBoard.Size = New System.Drawing.Size(156, 214)
+        Me.lsbPlayerGuessBoard.Size = New System.Drawing.Size(283, 214)
         Me.lsbPlayerGuessBoard.TabIndex = 3
         '
         'lsbPlayerGameBoard
@@ -85,16 +85,16 @@ Partial Class Form1
         Me.lsbPlayerGameBoard.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.lsbPlayerGameBoard.FormattingEnabled = True
         Me.lsbPlayerGameBoard.ItemHeight = 21
-        Me.lsbPlayerGameBoard.Location = New System.Drawing.Point(363, 157)
+        Me.lsbPlayerGameBoard.Location = New System.Drawing.Point(500, 225)
         Me.lsbPlayerGameBoard.Name = "lsbPlayerGameBoard"
         Me.lsbPlayerGameBoard.SelectionMode = System.Windows.Forms.SelectionMode.None
-        Me.lsbPlayerGameBoard.Size = New System.Drawing.Size(156, 214)
+        Me.lsbPlayerGameBoard.Size = New System.Drawing.Size(283, 214)
         Me.lsbPlayerGameBoard.TabIndex = 4
         '
         'lblGuessBoard
         '
         Me.lblGuessBoard.AutoSize = True
-        Me.lblGuessBoard.Location = New System.Drawing.Point(63, 119)
+        Me.lblGuessBoard.Location = New System.Drawing.Point(104, 188)
         Me.lblGuessBoard.Name = "lblGuessBoard"
         Me.lblGuessBoard.Size = New System.Drawing.Size(72, 15)
         Me.lblGuessBoard.TabIndex = 5
@@ -103,7 +103,7 @@ Partial Class Form1
         'lblGameBoard
         '
         Me.lblGameBoard.AutoSize = True
-        Me.lblGameBoard.Location = New System.Drawing.Point(401, 119)
+        Me.lblGameBoard.Location = New System.Drawing.Point(576, 186)
         Me.lblGameBoard.Name = "lblGameBoard"
         Me.lblGameBoard.Size = New System.Drawing.Size(72, 15)
         Me.lblGameBoard.TabIndex = 6
@@ -111,14 +111,14 @@ Partial Class Form1
         '
         'txtPlayerGuess
         '
-        Me.txtPlayerGuess.Location = New System.Drawing.Point(213, 222)
+        Me.txtPlayerGuess.Location = New System.Drawing.Point(349, 292)
         Me.txtPlayerGuess.Name = "txtPlayerGuess"
         Me.txtPlayerGuess.Size = New System.Drawing.Size(100, 23)
         Me.txtPlayerGuess.TabIndex = 7
         '
         'btnFire
         '
-        Me.btnFire.Location = New System.Drawing.Point(225, 274)
+        Me.btnFire.Location = New System.Drawing.Point(361, 344)
         Me.btnFire.Name = "btnFire"
         Me.btnFire.Size = New System.Drawing.Size(75, 23)
         Me.btnFire.TabIndex = 8
@@ -128,7 +128,7 @@ Partial Class Form1
         'lblCoordinates
         '
         Me.lblCoordinates.AutoSize = True
-        Me.lblCoordinates.Location = New System.Drawing.Point(225, 198)
+        Me.lblCoordinates.Location = New System.Drawing.Point(361, 268)
         Me.lblCoordinates.Name = "lblCoordinates"
         Me.lblCoordinates.Size = New System.Drawing.Size(74, 15)
         Me.lblCoordinates.TabIndex = 9
@@ -138,27 +138,27 @@ Partial Class Form1
         '
         Me.lblGuessColumns.AutoSize = True
         Me.lblGuessColumns.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGuessColumns.Location = New System.Drawing.Point(32, 133)
+        Me.lblGuessColumns.Location = New System.Drawing.Point(56, 203)
         Me.lblGuessColumns.Name = "lblGuessColumns"
-        Me.lblGuessColumns.Size = New System.Drawing.Size(145, 21)
+        Me.lblGuessColumns.Size = New System.Drawing.Size(217, 21)
         Me.lblGuessColumns.TabIndex = 10
-        Me.lblGuessColumns.Text = "1 2 3 4 5 6 7 8 9 10"
+        Me.lblGuessColumns.Text = "1   2   3   4   5   6   7   8   9   10"
         '
         'lblGameColumns
         '
         Me.lblGameColumns.AutoSize = True
         Me.lblGameColumns.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGameColumns.Location = New System.Drawing.Point(363, 133)
+        Me.lblGameColumns.Location = New System.Drawing.Point(500, 201)
         Me.lblGameColumns.Name = "lblGameColumns"
-        Me.lblGameColumns.Size = New System.Drawing.Size(145, 21)
+        Me.lblGameColumns.Size = New System.Drawing.Size(217, 21)
         Me.lblGameColumns.TabIndex = 11
-        Me.lblGameColumns.Text = "1 2 3 4 5 6 7 8 9 10"
+        Me.lblGameColumns.Text = "1   2   3   4   5   6   7   8   9   10"
         '
         'lblGuessA
         '
         Me.lblGuessA.AutoSize = True
         Me.lblGuessA.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGuessA.Location = New System.Drawing.Point(11, 159)
+        Me.lblGuessA.Location = New System.Drawing.Point(22, 229)
         Me.lblGuessA.Name = "lblGuessA"
         Me.lblGuessA.Size = New System.Drawing.Size(20, 21)
         Me.lblGuessA.TabIndex = 12
@@ -168,7 +168,7 @@ Partial Class Form1
         '
         Me.lblGuessB.AutoSize = True
         Me.lblGuessB.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGuessB.Location = New System.Drawing.Point(11, 180)
+        Me.lblGuessB.Location = New System.Drawing.Point(22, 250)
         Me.lblGuessB.Name = "lblGuessB"
         Me.lblGuessB.Size = New System.Drawing.Size(19, 21)
         Me.lblGuessB.TabIndex = 13
@@ -178,7 +178,7 @@ Partial Class Form1
         '
         Me.lblGuessC.AutoSize = True
         Me.lblGuessC.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGuessC.Location = New System.Drawing.Point(11, 201)
+        Me.lblGuessC.Location = New System.Drawing.Point(22, 271)
         Me.lblGuessC.Name = "lblGuessC"
         Me.lblGuessC.Size = New System.Drawing.Size(20, 21)
         Me.lblGuessC.TabIndex = 14
@@ -188,7 +188,7 @@ Partial Class Form1
         '
         Me.lblGuessD.AutoSize = True
         Me.lblGuessD.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGuessD.Location = New System.Drawing.Point(11, 222)
+        Me.lblGuessD.Location = New System.Drawing.Point(22, 292)
         Me.lblGuessD.Name = "lblGuessD"
         Me.lblGuessD.Size = New System.Drawing.Size(21, 21)
         Me.lblGuessD.TabIndex = 15
@@ -198,7 +198,7 @@ Partial Class Form1
         '
         Me.lblGuessE.AutoSize = True
         Me.lblGuessE.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGuessE.Location = New System.Drawing.Point(12, 243)
+        Me.lblGuessE.Location = New System.Drawing.Point(23, 313)
         Me.lblGuessE.Name = "lblGuessE"
         Me.lblGuessE.Size = New System.Drawing.Size(18, 21)
         Me.lblGuessE.TabIndex = 16
@@ -208,7 +208,7 @@ Partial Class Form1
         '
         Me.lblGuessF.AutoSize = True
         Me.lblGuessF.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGuessF.Location = New System.Drawing.Point(11, 264)
+        Me.lblGuessF.Location = New System.Drawing.Point(22, 334)
         Me.lblGuessF.Name = "lblGuessF"
         Me.lblGuessF.Size = New System.Drawing.Size(18, 21)
         Me.lblGuessF.TabIndex = 17
@@ -218,7 +218,7 @@ Partial Class Form1
         '
         Me.lblGuessG.AutoSize = True
         Me.lblGuessG.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGuessG.Location = New System.Drawing.Point(8, 285)
+        Me.lblGuessG.Location = New System.Drawing.Point(19, 355)
         Me.lblGuessG.Name = "lblGuessG"
         Me.lblGuessG.Size = New System.Drawing.Size(21, 21)
         Me.lblGuessG.TabIndex = 18
@@ -228,7 +228,7 @@ Partial Class Form1
         '
         Me.lblGuessH.AutoSize = True
         Me.lblGuessH.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGuessH.Location = New System.Drawing.Point(9, 306)
+        Me.lblGuessH.Location = New System.Drawing.Point(20, 376)
         Me.lblGuessH.Name = "lblGuessH"
         Me.lblGuessH.Size = New System.Drawing.Size(21, 21)
         Me.lblGuessH.TabIndex = 19
@@ -238,7 +238,7 @@ Partial Class Form1
         '
         Me.lblGuessI.AutoSize = True
         Me.lblGuessI.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGuessI.Location = New System.Drawing.Point(12, 327)
+        Me.lblGuessI.Location = New System.Drawing.Point(23, 397)
         Me.lblGuessI.Name = "lblGuessI"
         Me.lblGuessI.Size = New System.Drawing.Size(14, 21)
         Me.lblGuessI.TabIndex = 20
@@ -248,7 +248,7 @@ Partial Class Form1
         '
         Me.lblGuessJ.AutoSize = True
         Me.lblGuessJ.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGuessJ.Location = New System.Drawing.Point(12, 348)
+        Me.lblGuessJ.Location = New System.Drawing.Point(23, 418)
         Me.lblGuessJ.Name = "lblGuessJ"
         Me.lblGuessJ.Size = New System.Drawing.Size(16, 21)
         Me.lblGuessJ.TabIndex = 21
@@ -258,7 +258,7 @@ Partial Class Form1
         '
         Me.lblGameJ.AutoSize = True
         Me.lblGameJ.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGameJ.Location = New System.Drawing.Point(338, 348)
+        Me.lblGameJ.Location = New System.Drawing.Point(475, 416)
         Me.lblGameJ.Name = "lblGameJ"
         Me.lblGameJ.Size = New System.Drawing.Size(16, 21)
         Me.lblGameJ.TabIndex = 31
@@ -268,7 +268,7 @@ Partial Class Form1
         '
         Me.lblGameI.AutoSize = True
         Me.lblGameI.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGameI.Location = New System.Drawing.Point(338, 327)
+        Me.lblGameI.Location = New System.Drawing.Point(475, 395)
         Me.lblGameI.Name = "lblGameI"
         Me.lblGameI.Size = New System.Drawing.Size(14, 21)
         Me.lblGameI.TabIndex = 30
@@ -278,7 +278,7 @@ Partial Class Form1
         '
         Me.lblGameH.AutoSize = True
         Me.lblGameH.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGameH.Location = New System.Drawing.Point(335, 306)
+        Me.lblGameH.Location = New System.Drawing.Point(472, 374)
         Me.lblGameH.Name = "lblGameH"
         Me.lblGameH.Size = New System.Drawing.Size(21, 21)
         Me.lblGameH.TabIndex = 29
@@ -288,7 +288,7 @@ Partial Class Form1
         '
         Me.lblGameG.AutoSize = True
         Me.lblGameG.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGameG.Location = New System.Drawing.Point(334, 285)
+        Me.lblGameG.Location = New System.Drawing.Point(471, 353)
         Me.lblGameG.Name = "lblGameG"
         Me.lblGameG.Size = New System.Drawing.Size(21, 21)
         Me.lblGameG.TabIndex = 28
@@ -298,7 +298,7 @@ Partial Class Form1
         '
         Me.lblGameF.AutoSize = True
         Me.lblGameF.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGameF.Location = New System.Drawing.Point(337, 264)
+        Me.lblGameF.Location = New System.Drawing.Point(474, 332)
         Me.lblGameF.Name = "lblGameF"
         Me.lblGameF.Size = New System.Drawing.Size(18, 21)
         Me.lblGameF.TabIndex = 27
@@ -308,7 +308,7 @@ Partial Class Form1
         '
         Me.lblGameE.AutoSize = True
         Me.lblGameE.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGameE.Location = New System.Drawing.Point(338, 243)
+        Me.lblGameE.Location = New System.Drawing.Point(475, 311)
         Me.lblGameE.Name = "lblGameE"
         Me.lblGameE.Size = New System.Drawing.Size(18, 21)
         Me.lblGameE.TabIndex = 26
@@ -318,7 +318,7 @@ Partial Class Form1
         '
         Me.lblGameD.AutoSize = True
         Me.lblGameD.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGameD.Location = New System.Drawing.Point(337, 222)
+        Me.lblGameD.Location = New System.Drawing.Point(474, 290)
         Me.lblGameD.Name = "lblGameD"
         Me.lblGameD.Size = New System.Drawing.Size(21, 21)
         Me.lblGameD.TabIndex = 25
@@ -328,7 +328,7 @@ Partial Class Form1
         '
         Me.lblGameC.AutoSize = True
         Me.lblGameC.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGameC.Location = New System.Drawing.Point(337, 201)
+        Me.lblGameC.Location = New System.Drawing.Point(474, 269)
         Me.lblGameC.Name = "lblGameC"
         Me.lblGameC.Size = New System.Drawing.Size(20, 21)
         Me.lblGameC.TabIndex = 24
@@ -338,7 +338,7 @@ Partial Class Form1
         '
         Me.lblGameB.AutoSize = True
         Me.lblGameB.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGameB.Location = New System.Drawing.Point(337, 180)
+        Me.lblGameB.Location = New System.Drawing.Point(474, 248)
         Me.lblGameB.Name = "lblGameB"
         Me.lblGameB.Size = New System.Drawing.Size(19, 21)
         Me.lblGameB.TabIndex = 23
@@ -348,7 +348,7 @@ Partial Class Form1
         '
         Me.lblGameA.AutoSize = True
         Me.lblGameA.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblGameA.Location = New System.Drawing.Point(337, 159)
+        Me.lblGameA.Location = New System.Drawing.Point(474, 227)
         Me.lblGameA.Name = "lblGameA"
         Me.lblGameA.Size = New System.Drawing.Size(20, 21)
         Me.lblGameA.TabIndex = 22
@@ -356,7 +356,7 @@ Partial Class Form1
         '
         'btnEndTurn
         '
-        Me.btnEndTurn.Location = New System.Drawing.Point(225, 346)
+        Me.btnEndTurn.Location = New System.Drawing.Point(361, 409)
         Me.btnEndTurn.Name = "btnEndTurn"
         Me.btnEndTurn.Size = New System.Drawing.Size(68, 23)
         Me.btnEndTurn.TabIndex = 33
@@ -365,7 +365,7 @@ Partial Class Form1
         '
         'txtTurnInfo
         '
-        Me.txtTurnInfo.Location = New System.Drawing.Point(213, 161)
+        Me.txtTurnInfo.Location = New System.Drawing.Point(349, 231)
         Me.txtTurnInfo.Name = "txtTurnInfo"
         Me.txtTurnInfo.ReadOnly = True
         Me.txtTurnInfo.Size = New System.Drawing.Size(100, 23)
@@ -378,7 +378,7 @@ Partial Class Form1
         Me.picVBWarships.BackColor = System.Drawing.Color.Transparent
         Me.picVBWarships.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.picVBWarships.Image = Global.VBWarships.My.Resources.Resources.VB_Warships
-        Me.picVBWarships.Location = New System.Drawing.Point(35, 27)
+        Me.picVBWarships.Location = New System.Drawing.Point(104, 55)
         Me.picVBWarships.Name = "picVBWarships"
         Me.picVBWarships.Size = New System.Drawing.Size(510, 89)
         Me.picVBWarships.TabIndex = 35
@@ -389,7 +389,7 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkOrange
-        Me.ClientSize = New System.Drawing.Size(593, 450)
+        Me.ClientSize = New System.Drawing.Size(837, 537)
         Me.Controls.Add(Me.picVBWarships)
         Me.Controls.Add(Me.txtTurnInfo)
         Me.Controls.Add(Me.btnEndTurn)

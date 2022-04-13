@@ -96,9 +96,6 @@ Public Class Form1
             arrayPlayerGuessBoard(x, 0) = 0 'set selected cell in column  x to 0
         Next
 
-        'print player guess array to lsbPlayerGuessBoard
-        updateBoard(arrayPlayerGuessBoard, lsbPlayerGuessBoard)
-
         System.Diagnostics.Debug.WriteLine("Exit: readyPlayer1")
     End Sub
 
@@ -192,6 +189,11 @@ Public Class Form1
         readyPlayer1() '(Yes I did Structure this program deliberately so I could write Ready Player 1)
         System.Diagnostics.Debug.WriteLine("Call: readyPlayerComputer")
         readyPlayerComputer()
+
+        'print player game array to lsbPlayerGameBoard
+        updateBoard(arrayPlayerGameBoard, lsbPlayerGameBoard)
+        'print player guess array to lsbPlayerGuessBoard
+        updateBoard(arrayPlayerGuessBoard, lsbPlayerGuessBoard)
 
         System.Diagnostics.Debug.WriteLine("Call: updateTurnInfo")
         updateTurnInfo()
@@ -388,16 +390,59 @@ Public Class Form1
 
     End Function
 
-    Private Sub updateBoard(arrayName As Array, boardName As ListBox)
+    Private Sub updateBoard(inputArray As Array, boardName As ListBox)
         System.Diagnostics.Debug.WriteLine("updateBoard")
         'Format the contents of a 2d array and print it to a listbox
-        'print arrayName to boardName
+
+        Dim outputArray(9, 9) As String 'Create an array for "translated" output to board
+
+        'convert inputArray (integer) to output array (string)
+        For r = 0 To 9
+            For c = 0 To 9
+                outputArray(r, c) = inputArray(r, c).ToString
+            Next
+        Next
+
+        ' 0 = water
+        ' 1 = destroyer (2 holes)
+        ' 2 = cruiser (3 holes)
+        ' 3 = submarine (3 holes)
+        ' 4 = battleship (4 holes)
+        ' 5 = aircraft carrier (5 holes)
+        ' 6 = hit ship
+        ' 7 = miss
+
+        'for every column in every row, replace numbers with pictures to represent what the number means
+        For r = 0 To 9
+            For c = 0 To 9
+                Select Case outputArray(r, c)
+                    Case 0
+                        outputArray(r, c) = "〰  "
+                    Case 1
+                        outputArray(r, c) = "⛵"
+                    Case 2
+                        outputArray(r, c) = "🚤"
+                    Case 3
+                        outputArray(r, c) = "🛥"
+                    Case 4
+                        outputArray(r, c) = "🚢"
+                    Case 5
+                        outputArray(r, c) = "⛴"
+                    Case 6
+                        outputArray(r, c) = "🚩"
+                    Case 7
+                        outputArray(r, c) = "🏳"
+                End Select
+            Next
+        Next
+
+        'print outputArray to board(boardName)
         System.Diagnostics.Debug.WriteLine("updateBoard: update the board from array")
         Dim rows(9) As String
         boardName.Items.Clear()
         For r = 0 To 9
             For c = 0 To 9
-                rows(r) &= arrayName(r, c)
+                rows(r) &= outputArray(r, c)
                 If c < 9 Then
                     rows(r) &= " " 'this puts a space between each item horizontally
                 End If
@@ -436,19 +481,20 @@ Public Class Form1
                     System.Diagnostics.Debug.WriteLine("Call: checkHit")
 
                     'update player guess array
-                    arrayPlayerGuessBoard(intFireOrderX, intFireOrderY) = checkHit(strFireOrder, arrayComputerGameBoard)
 
-                    If Not checkHit(strFireOrder, arrayComputerGameBoard) = 0 Then 'rudimentary system to tell player if hit or miss
-                        MessageBox.Show("Hit!")
-                    Else
+                    If checkHit(strFireOrder, arrayComputerGameBoard) = 0 Then
+                        arrayPlayerGuessBoard(intFireOrderX, intFireOrderY) = 7
                         MessageBox.Show("Miss!")
+                        System.Diagnostics.Debug.WriteLine("Miss")
+                    ElseIf checkHit(strFireOrder, arrayComputerGameBoard) = 1 Or 2 Or 3 Or 4 Or 5 Then
+                        arrayPlayerGuessBoard(intFireOrderX, intFireOrderY) = 6
+                        MessageBox.Show("Hit!")
+                        System.Diagnostics.Debug.WriteLine("Hit")
                     End If
-                    'TODO: update this system so it is better
 
                     System.Diagnostics.Debug.WriteLine("btnFire_Click: Set arrayPlayerGuessBoard(" & intFireOrderX & "," & intFireOrderY & ") to " & checkHit(strFireOrder, arrayComputerGameBoard))
 
                     'redraw player guess board with new information in the array
-
                     System.Diagnostics.Debug.WriteLine("Call: updateBoard")
                     updateBoard(arrayPlayerGuessBoard, lsbPlayerGuessBoard)
 
@@ -494,8 +540,8 @@ Public Class Form1
 
                 Randomize() 'Initialize the random-number generator
                 ' Generate random value between 0 and 9 for both coordinates
-                intXCord = CInt(Int((9 * Rnd()) + 0))
-                intYCord = CInt(Int((9 * Rnd()) + 0))
+                intXCord = CInt(Math.Floor((9 - 0 + 1) * Rnd())) + 0
+                intYCord = CInt(Math.Floor((9 - 0 + 1) * Rnd())) + 0
                 System.Diagnostics.Debug.WriteLine("compTurn: X cord: " & CStr(intXCord))
                 System.Diagnostics.Debug.WriteLine("compTurn: Y cord: " & CStr(intYCord))
                 If arrayComputerGuessBoard(intXCord, intYCord) = 1 Then 'if coordinates already tired
@@ -619,7 +665,7 @@ Public Class Form1
         Dim blnFound As Boolean = False
         For x = 0 To UBound(gameBoard) 'for every column  x
             For y = 0 To UBound(gameBoard) 'for every row y
-                If gameBoard(x, y) = 1 Then 'if the square selected is a ship
+                If gameBoard(x, y) = 1 Or gameBoard(x, y) = 2 Or gameBoard(x, y) = 3 Or gameBoard(x, y) = 4 Or gameBoard(x, y) = 5 Then 'if the square selected is a ship
                     blnFound = True
                     Diagnostics.Debug.WriteLine("ship " & gameBoardName & " " & x & "," & y & " = " & gameBoard(x, y) & " (x,y)")
                 Else
