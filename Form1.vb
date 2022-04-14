@@ -11,9 +11,10 @@ Public Class Form1
     Dim arrayPlayerGuessBoard(9, 9) As Integer 'board for the positions of the players guesses
     Dim arrayComputerGameBoard(9, 9) As Integer 'Create board for the positions of the computers ships
     Dim arrayComputerGuessBoard(9, 9) As Integer 'board for the positions of the players guesses
+    Dim arraySortedScores(900) As String 'an array for the scores of players sorted from low to high
 
     'create global variables
-    Dim strScoreFilepath As String = "C:\Users\dublo\Desktop\score.txt" 'location of the score file
+    Dim strScoreFilepath As String = "scores.txt" 'location of the score file
 
     Dim strPlayerName As String = "" 'a variable to store the player name for scores
     Dim strWinner As String = "" 'a variable for the name of the Winner of a game
@@ -206,6 +207,10 @@ Public Class Form1
             End If
             Diagnostics.Debug.WriteLine("loadGame: Player name is: '" & strPlayerName & "'")
         Loop
+
+        createScoreFile()
+        sortScores()
+        displayScores()
 
         System.Diagnostics.Debug.WriteLine("Exit: loadGame")
     End Sub
@@ -591,6 +596,22 @@ Public Class Form1
         Diagnostics.Debug.WriteLine("Exit: compTurn")
     End Sub
 
+    Private Sub createScoreFile()
+        'if the 'score.txt' file doesn't exist create it
+        System.Diagnostics.Debug.WriteLine("createScoreFile")
+        If Not My.Computer.FileSystem.FileExists(strScoreFilepath) Then 'if file doesn't exist
+            Diagnostics.Debug.WriteLine("createScoreFile: score file doesn't exist")
+            'create score.txt file
+            SW = New StreamWriter(strScoreFilepath, True)
+            SW.WriteLine(System.Environment.NewLine)
+            SW.Close()
+            Diagnostics.Debug.WriteLine("createScoreFile: Created score file at '" & strScoreFilepath & "'")
+        Else
+            Diagnostics.Debug.WriteLine("createScoreFile: Score file does exist")
+        End If
+        System.Diagnostics.Debug.WriteLine("Exit: createScoreFile")
+    End Sub
+
     Private Sub updateScore(strWinner As String)
         'add new scores to score file then display score to player as message box
         System.Diagnostics.Debug.WriteLine("updateScore")
@@ -598,9 +619,7 @@ Public Class Form1
             If Not My.Computer.FileSystem.FileExists(strScoreFilepath) Then 'if file doesn't exist
                 Diagnostics.Debug.WriteLine("updateScore: score file doesn't exist")
                 'create score.txt file
-                SW = New StreamWriter(strScoreFilepath, True)
-                SW.WriteLine("'Game' scores:")
-                SW.WriteLine("------------------")
+                'SW = New StreamWriter(strScoreFilepath, True)
                 SW.WriteLine(System.Environment.NewLine)
                 SW.Close()
                 Diagnostics.Debug.WriteLine("updateScore: Created score file at '" & strScoreFilepath & "'")
@@ -610,7 +629,8 @@ Public Class Form1
                 intScore = intShotsFiredComputer 'this is actually a low score system
                 Try 'add new score to score file
                     SW = New StreamWriter(strScoreFilepath, True) 'open score.txt and append new scores to it
-                    SW.WriteLine(CStr(intScore) & " " & "computer")
+                    'SW.WriteLine(CStr(intScore) & " " & "computer" & ",")
+                    SW.WriteLine(CStr(intScore) & ",")
                     SW.Close()
                     Diagnostics.Debug.WriteLine("updateScore: added computer with a score of " & intScore & "to score.txt")
                 Catch ex As Exception
@@ -620,7 +640,8 @@ Public Class Form1
                 intScore = intShotsFiredPlayer 'this is actually a low score system
                 Try 'add new score to score file
                     SW = New StreamWriter(strScoreFilepath, True) 'open score.txt and append new scores to it
-                    SW.WriteLine(CStr(intScore) & " " & strPlayerName)
+                    'SW.WriteLine(CStr(intScore) & " " & strPlayerName)
+                    SW.WriteLine(CStr(intScore) & ",")
                     SW.Close()
                     Diagnostics.Debug.WriteLine("updateScore: added " & strWinner & " with a score of " & intScore & "to score.txt")
                 Catch ex As Exception
@@ -643,7 +664,8 @@ Public Class Form1
         System.Diagnostics.Debug.WriteLine("Exit: displayAddedscore")
     End Sub
 
-    Private Sub showscores() 'read the score.txt file and display as message box
+    Private Sub showscores()
+        'read the score.txt file and display as message box
         Diagnostics.Debug.WriteLine("showscores")
         Try
             SR = New StreamReader(strScoreFilepath)
@@ -657,6 +679,48 @@ Public Class Form1
         Catch ex As Exception
         End Try
         Diagnostics.Debug.WriteLine("Exit: showscores")
+    End Sub
+
+    Private Sub sortScores()
+        'read scores from disk, split them by "," and sort them
+        System.Diagnostics.Debug.WriteLine("sortScores")
+        Dim strFileContents As String
+
+        'read the highscores file into memory
+        SR = New StreamReader(strScoreFilepath)
+        strFileContents = SR.ReadToEnd()
+        SR.Close()
+        Dim arrayUnsortedScores(strFileContents.Length) As String 'array for guesses before they are sorted
+
+        arrayUnsortedScores = strFileContents.Split(",")
+        'and add a check so that the player can't enter a commer in they're name......not done
+
+        arraySortedScores = arrayUnsortedScores
+
+        'bubble sort scores
+        For iPass = 1 To UBound(arraySortedScores) 'for every pass
+            For i = 0 To UBound(arraySortedScores) - 1 'for every item from the first score
+                If arraySortedScores(i) > arraySortedScores(i + 1) Then 'if this item is bigger than the next
+                    Dim strTempVar As Integer
+                    'swap the item with the next item in the list
+                    strTempVar = arraySortedScores(i)
+                    arraySortedScores(i) = arraySortedScores(i + 1)
+                    arraySortedScores(i + 1) = strTempVar
+                End If
+            Next
+        Next
+
+        System.Diagnostics.Debug.WriteLine("sortScores: Bubble sort compleate")
+        System.Diagnostics.Debug.WriteLine("Exit: sortScores")
+    End Sub
+
+    Private Sub displayScores() 'was a button, is now very much not a button
+        'print the sorted scores to lsbScores
+        System.Diagnostics.Debug.WriteLine("displayScores")
+        For i = 0 To UBound(arraySortedScores)
+            lsbScores.Items.Add(arraySortedScores(i))
+        Next
+        System.Diagnostics.Debug.WriteLine("Exit: displayScores")
     End Sub
 
     Private Function checkForWin(gameBoard As Array, gameBoardName As String)

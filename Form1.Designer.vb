@@ -55,6 +55,7 @@ Partial Class Form1
         Me.btnEndTurn = New System.Windows.Forms.Button()
         Me.txtTurnInfo = New System.Windows.Forms.TextBox()
         Me.picVBWarships = New System.Windows.Forms.PictureBox()
+        Me.lsbScores = New System.Windows.Forms.ListBox()
         CType(Me.picVBWarships, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -384,12 +385,22 @@ Partial Class Form1
         Me.picVBWarships.TabIndex = 35
         Me.picVBWarships.TabStop = False
         '
+        'lsbScores
+        '
+        Me.lsbScores.FormattingEnabled = True
+        Me.lsbScores.ItemHeight = 15
+        Me.lsbScores.Location = New System.Drawing.Point(816, 163)
+        Me.lsbScores.Name = "lsbScores"
+        Me.lsbScores.Size = New System.Drawing.Size(132, 274)
+        Me.lsbScores.TabIndex = 36
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkOrange
-        Me.ClientSize = New System.Drawing.Size(837, 537)
+        Me.ClientSize = New System.Drawing.Size(981, 537)
+        Me.Controls.Add(Me.lsbScores)
         Me.Controls.Add(Me.picVBWarships)
         Me.Controls.Add(Me.txtTurnInfo)
         Me.Controls.Add(Me.btnEndTurn)
@@ -463,4 +474,5 @@ Partial Class Form1
     Friend WithEvents btnEndTurn As Button
     Friend WithEvents txtTurnInfo As TextBox
     Friend WithEvents picVBWarships As PictureBox
+    Friend WithEvents lsbScores As ListBox
 End Class
