@@ -22,6 +22,7 @@ Public Class Form1
     Dim intTurn As Integer = 0 'a variable to keep track of who's turn it is ( 0 = player's turn, 1 = computer's turn)
     Dim intShotsFiredPlayer As Integer
     Dim intShotsFiredComputer As Integer
+    Dim blnGameHasBeenWon As Boolean = False
 
     Private Sub readyPlayer1()
         'load the arrays for the players boards, fill them with water and print them to list boxes
@@ -728,42 +729,51 @@ Public Class Form1
     Private Function checkForWin(gameBoard As Array, gameBoardName As String)
         'check to see if the games has been won
         Diagnostics.Debug.WriteLine("checkForWin")
-        Dim blnFound As Boolean = False
-        For x = 0 To UBound(gameBoard) 'for every column  x
-            For y = 0 To UBound(gameBoard) 'for every row y
-                If gameBoard(x, y) = 1 Or gameBoard(x, y) = 2 Or gameBoard(x, y) = 3 Or gameBoard(x, y) = 4 Or gameBoard(x, y) = 5 Then 'if the square selected is a ship
-                    blnFound = True
-                    Diagnostics.Debug.WriteLine("ship " & gameBoardName & " " & x & "," & y & " = " & gameBoard(x, y) & " (x,y)")
-                Else
-                    Diagnostics.Debug.WriteLine("no ship " & gameBoardName & " " & x & "," & y & " = " & gameBoard(x, y) & " (x,y)")
-                End If
+
+        If blnGameHasBeenWon = False Then
+            Dim blnFound As Boolean = False
+            For x = 0 To UBound(gameBoard) 'for every column  x
+                For y = 0 To UBound(gameBoard) 'for every row y
+                    If gameBoard(x, y) = 1 Or gameBoard(x, y) = 2 Or gameBoard(x, y) = 3 Or gameBoard(x, y) = 4 Or gameBoard(x, y) = 5 Then 'if the square selected is a ship
+                        blnFound = True
+                        Diagnostics.Debug.WriteLine("ship " & gameBoardName & " " & x & "," & y & " = " & gameBoard(x, y) & " (x,y)")
+                    Else
+                        Diagnostics.Debug.WriteLine("no ship " & gameBoardName & " " & x & "," & y & " = " & gameBoard(x, y) & " (x,y)")
+                    End If
+                Next
             Next
-        Next
 
-        If blnFound = False Then 'if there are no ships left on the gameboard
-            If gameBoardName = "arrayPlayerGameBoard" Then 'if the board is the player's game board
-                'computer wins
-                strWinner = "computer"
-                Diagnostics.Debug.WriteLine("checkForWin: Computer wins!")
-                Diagnostics.Debug.WriteLine("checkForWin: call updateScore")
-                updateScore("computer") 'update the score file with the new score
-                Return "computer"
+            If blnFound = False Then 'if there are no ships left on the gameboard
+                If gameBoardName = "arrayPlayerGameBoard" Then 'if the board is the player's game board
+                    'computer wins
+                    blnGameHasBeenWon = True
+                    strWinner = "computer"
+                    Diagnostics.Debug.WriteLine("checkForWin: Computer wins!")
+                    Diagnostics.Debug.WriteLine("checkForWin: call updateScore")
+                    updateScore("computer") 'update the score file with the new score
+                    Return "computer"
+                End If
+
+                If gameBoardName = "arrayComputerGameBoard" Then 'if the board is the computer's game board
+                    'player wins
+                    blnGameHasBeenWon = True
+                    strWinner = strPlayerName
+                    Diagnostics.Debug.WriteLine("checkForWin: Player wins!")
+                    Diagnostics.Debug.WriteLine("checkForWin: call updateScore")
+                    updateScore("player") 'update the score file with the new score
+                    Return "player"
+                End If
+            Else 'if there are still ships left on the board
+                'nobody wins
+                Diagnostics.Debug.WriteLine("checkForWin: Nobody wins!")
+                Return "nobody"
             End If
 
-            If gameBoardName = "arrayComputerGameBoard" Then 'if the board is the computer's game board
-                'player wins
-                strWinner = strPlayerName
-                Diagnostics.Debug.WriteLine("checkForWin: Player wins!")
-                Diagnostics.Debug.WriteLine("checkForWin: call updateScore")
-                updateScore("player") 'update the score file with the new score
-                Return "player"
-            End If
-        Else 'if there are still ships left on the board
-            'nobody wins
-            Diagnostics.Debug.WriteLine("checkForWin: Nobody wins!")
-            Return "nobody"
+        ElseIf blnGameHasBeenWon = True Then
+            System.Diagnostics.Debug.WriteLine("checkForWin: Game has already been won")
         End If
         Diagnostics.Debug.WriteLine("Exit: checkForWin")
+
     End Function
 
     Private Sub btnEndTurn_Click(sender As Object, e As EventArgs) Handles btnEndTurn.Click
