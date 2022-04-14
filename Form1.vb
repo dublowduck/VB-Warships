@@ -489,10 +489,12 @@ Public Class Form1
 
                     If checkHit(strFireOrder, arrayComputerGameBoard) = 0 Then
                         arrayPlayerGuessBoard(intFireOrderX, intFireOrderY) = 7
+                        arrayComputerGameBoard(intFireOrderX, intFireOrderY) = 7
                         MessageBox.Show("Miss!")
                         System.Diagnostics.Debug.WriteLine("Miss")
                     ElseIf checkHit(strFireOrder, arrayComputerGameBoard) = 1 Or 2 Or 3 Or 4 Or 5 Then
                         arrayPlayerGuessBoard(intFireOrderX, intFireOrderY) = 6
+                        arrayComputerGameBoard(intFireOrderX, intFireOrderY) = 6
                         MessageBox.Show("Hit!")
                         System.Diagnostics.Debug.WriteLine("Hit")
                     End If
