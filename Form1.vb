@@ -1,4 +1,4 @@
-Imports System.IO 'used for reading and writing files
+﻿Imports System.IO 'used for reading and writing files
 
 Public Class Form1
 
@@ -622,7 +622,7 @@ Public Class Form1
             If Not My.Computer.FileSystem.FileExists(strScoreFilepath) Then 'if file doesn't exist
                 Diagnostics.Debug.WriteLine("updateScore: score file doesn't exist")
                 'create score.txt file
-                'SW = New StreamWriter(strScoreFilepath, True)
+                SW = New StreamWriter(strScoreFilepath, True)
                 SW.WriteLine(System.Environment.NewLine)
                 SW.Close()
                 Diagnostics.Debug.WriteLine("updateScore: Created score file at '" & strScoreFilepath & "'")
@@ -720,6 +720,7 @@ Public Class Form1
     Private Sub displayScores() 'was a button, is now very much not a button
         'print the sorted scores to lsbScores
         System.Diagnostics.Debug.WriteLine("displayScores")
+        lsbScores.Items.Clear()
         For i = 0 To UBound(arraySortedScores)
             lsbScores.Items.Add(arraySortedScores(i))
         Next
@@ -772,6 +773,8 @@ Public Class Form1
         ElseIf blnGameHasBeenWon = True Then
             System.Diagnostics.Debug.WriteLine("checkForWin: Game has already been won")
         End If
+        sortScores()
+        displayScores()
         Diagnostics.Debug.WriteLine("Exit: checkForWin")
 
     End Function
