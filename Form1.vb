@@ -1,4 +1,4 @@
-﻿Imports System.IO 'used for reading and writing files
+Imports System.IO 'used for reading and writing files
 
 Public Class Form1
 
@@ -258,7 +258,7 @@ Public Class Form1
 
             'check if cords are on the board (in range: A1-J10)
             Select Case charYCord
-                Case = "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K" 'if Y cord is valid
+                Case = "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" 'if Y cord is valid
                     Diagnostics.Debug.WriteLine("validateInput: Y Cord '" & charYCord & "': Valid")
 
                     Select Case strXCord
