@@ -56,6 +56,7 @@ Partial Class Form1
         Me.txtTurnInfo = New System.Windows.Forms.TextBox()
         Me.picVBWarships = New System.Windows.Forms.PictureBox()
         Me.lsbScores = New System.Windows.Forms.ListBox()
+        Me.lblLeaderBoard = New System.Windows.Forms.Label()
         CType(Me.picVBWarships, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -394,12 +395,22 @@ Partial Class Form1
         Me.lsbScores.Size = New System.Drawing.Size(132, 274)
         Me.lsbScores.TabIndex = 36
         '
+        'lblLeaderBoard
+        '
+        Me.lblLeaderBoard.AutoSize = True
+        Me.lblLeaderBoard.Location = New System.Drawing.Point(848, 145)
+        Me.lblLeaderBoard.Name = "lblLeaderBoard"
+        Me.lblLeaderBoard.Size = New System.Drawing.Size(73, 15)
+        Me.lblLeaderBoard.TabIndex = 37
+        Me.lblLeaderBoard.Text = "Leaderboard"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkOrange
         Me.ClientSize = New System.Drawing.Size(981, 537)
+        Me.Controls.Add(Me.lblLeaderBoard)
         Me.Controls.Add(Me.lsbScores)
         Me.Controls.Add(Me.picVBWarships)
         Me.Controls.Add(Me.txtTurnInfo)
@@ -475,4 +486,5 @@ Partial Class Form1
     Friend WithEvents txtTurnInfo As TextBox
     Friend WithEvents picVBWarships As PictureBox
     Friend WithEvents lsbScores As ListBox
+    Friend WithEvents lblLeaderBoard As Label
 End Class
