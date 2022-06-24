@@ -8,6 +8,37 @@
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <AssemblyName>VB-Warships</AssemblyName>
+    <Version>0.1.0</Version>
+    <Authors>dublowduck</Authors>
+    <PackageProjectUrl>https://github.com/dublowduck/VB-Warships</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dublowduck/VB-Warships</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageReleaseNotes>The first version of VB-Warships has been released!
+Yay!  A mere four months of (inconsistent) development to go from an idea to a mostly working, if shall we say uniquely styled game. v0.1.0 is almost identical to what was handed in as the final submission to college save for the installer and version information label on the main screen. The game must be run as administrator to access save files.
+
+**Compatibility**
+
+- Windows 11*
+- Windows 10 64-bit
+- Windows 10 32-bit
+- Windows 7 64-bit*
+- Windows 7 32-bit*
+
+*Version 0.1.0 will run on Windows 11 but the "miss flag" emoji will be displayed as an empty box. For Windows 7 the ships and hits or misses will be displayed as empty boxes, making the game rather difficult to play. Thease should both be patched in version 0.1.1</PackageReleaseNotes>
+    <Description>A port of the game Battleship to Visual Basic. It began as an overly complicated college project and is now just for fun. Have a go!</Description>
+    <PackageTags>game, Visual Basic</PackageTags>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
