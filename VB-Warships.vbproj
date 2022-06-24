@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -18,11 +18,13 @@ Yay!  A mere four months of (inconsistent) development to go from an idea to a m
 
 **Compatibility**
 
-- Windows 11
+- Windows 11*
 - Windows 10 64-bit
 - Windows 10 32-bit
+- Windows 7 64-bit*
+- Windows 7 32-bit*
 
-Version 0.1.0 will run on Windows 7 but emojis for the ships and hits or misses will be displayed as empty boxes, making the game rather difficult to play. This should be patched in version 0.1.1</PackageReleaseNotes>
+*Version 0.1.0 will run on Windows 11 but the "miss flag" emoji will be displayed as an empty box. For Windows 7 the ships and hits or misses will be displayed as empty boxes, making the game rather difficult to play. Thease should both be patched in version 0.1.1</PackageReleaseNotes>
     <Description>A port of the game Battleship to Visual Basic. It began as an overly complicated college project and is now just for fun. Have a go!</Description>
     <PackageTags>game, Visual Basic</PackageTags>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
