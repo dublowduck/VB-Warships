@@ -57,6 +57,7 @@ Partial Class Form1
         Me.picVBWarships = New System.Windows.Forms.PictureBox()
         Me.lsbScores = New System.Windows.Forms.ListBox()
         Me.lblLeaderBoard = New System.Windows.Forms.Label()
+        Me.lblVersionInfo = New System.Windows.Forms.Label()
         CType(Me.picVBWarships, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -404,12 +405,22 @@ Partial Class Form1
         Me.lblLeaderBoard.TabIndex = 37
         Me.lblLeaderBoard.Text = "Leaderboard"
         '
+        'lblVersionInfo
+        '
+        Me.lblVersionInfo.AutoSize = True
+        Me.lblVersionInfo.Location = New System.Drawing.Point(932, 513)
+        Me.lblVersionInfo.Name = "lblVersionInfo"
+        Me.lblVersionInfo.Size = New System.Drawing.Size(37, 15)
+        Me.lblVersionInfo.TabIndex = 38
+        Me.lblVersionInfo.Text = "v0.1.0"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkOrange
         Me.ClientSize = New System.Drawing.Size(981, 537)
+        Me.Controls.Add(Me.lblVersionInfo)
         Me.Controls.Add(Me.lblLeaderBoard)
         Me.Controls.Add(Me.lsbScores)
         Me.Controls.Add(Me.picVBWarships)
@@ -487,4 +498,5 @@ Partial Class Form1
     Friend WithEvents picVBWarships As PictureBox
     Friend WithEvents lsbScores As ListBox
     Friend WithEvents lblLeaderBoard As Label
+    Friend WithEvents lblVersionInfo As Label
 End Class
