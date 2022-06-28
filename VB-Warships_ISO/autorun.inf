@@ -1,0 +1,4 @@
+[autorun]
+open=setup.exe
+icon=setup.exe, 1
+label=VB-Warships v0.1.0
