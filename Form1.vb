@@ -1,4 +1,4 @@
-'VB-Warships Version 0.1.1 pre-release
+﻿'VB-Warships Version 0.1.1 pre-release
 'https://github.com/dublowduck/VB-Warships/tree/v0.1.1
 
 Imports System.IO 'used for reading and writing files
@@ -491,7 +491,13 @@ Public Class Form1
 
                     'update player guess array
 
-                    If checkHit(strFireOrder, arrayComputerGameBoard) = 0 Then
+                    System.Diagnostics.Debug.WriteLine("Check to see if cord in player guess array as hit")
+                    'if the player has already hit this cordinate:
+                    If arrayPlayerGuessBoard(intFireOrderX, intFireOrderY) = 6 Then
+                        MessageBox.Show("Already hit that one")
+                        System.Diagnostics.Debug.WriteLine("Hit, again")
+                        'if they havn't hit it yet:
+                    ElseIf checkHit(strFireOrder, arrayComputerGameBoard) = 0 Then
                         arrayPlayerGuessBoard(intFireOrderX, intFireOrderY) = 7
                         arrayComputerGameBoard(intFireOrderX, intFireOrderY) = 7
                         MessageBox.Show("Miss!")
