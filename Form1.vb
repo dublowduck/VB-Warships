@@ -1,4 +1,7 @@
-﻿Imports System.IO 'used for reading and writing files
+'VB-Warships Version 0.1.1 pre-release
+'https://github.com/dublowduck/VB-Warships/tree/v0.1.1
+
+Imports System.IO 'used for reading and writing files
 
 Public Class Form1
 

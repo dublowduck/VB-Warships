@@ -1,8 +1,8 @@
 
 # VB-Warships
 ![GitHub commits since latest release (by date) for a branch](https://img.shields.io/github/commits-since/dublowduck/vb-warships/v0.1.0)
-## Version 0.1.0🎉
-The first version of VB-Warships has been released! Yay!  A mere five months of (inconsistent) development to go from an idea to a mostly working, if shall we say uniquely styled game. v0.1.0 is almost identical to what was handed in as the final submission to college save for the installer and version information label on the main screen. The game must be run as administrator to access save files.
+## Version 0.1.1 pre-release
+The game still must be run as administrator to access save files.
 
 ![{Picture of the main game screen}](/Screenshots/VB-Warships_Game.png?raw=true "Game play")
 
