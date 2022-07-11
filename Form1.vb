@@ -212,6 +212,7 @@ Public Class Form1
             Diagnostics.Debug.WriteLine("loadGame: Player name is: '" & strPlayerName & "'")
         Loop
 
+        MessageBox.Show("If you are not running the game as administrator, you will not be able to access save files")
         createScoreFile()
         sortScores()
         displayScores()
