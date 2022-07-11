@@ -27,7 +27,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\VB-Warships_Setup.msi"
+        "OutputFilename" = "8:Debug\\VB-Warships_Setup_v0.1.1.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -44,6 +44,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -174,24 +182,24 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:VB-Warships"
-        "ProductCode" = "8:{E0999FC9-4A58-42F5-ABC1-65C2214F3647}"
-        "PackageCode" = "8:{1FBFCED4-49E7-4201-B15A-6F71C6EFF87B}"
+        "ProductName" = "8:VB-Warships_v0.1.1"
+        "ProductCode" = "8:{4140F51C-5751-49F3-AAAC-87B2E8E52ED9}"
+        "PackageCode" = "8:{4CCACABB-9111-43DE-BBB8-9859C1444E2F}"
         "UpgradeCode" = "8:{774EB7BF-2ACA-4A20-ADD0-07B41E11B0E2}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.1.0"
+        "ProductVersion" = "8:0.1.1"
         "Manufacturer" = "8:dublowduck"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/dublowduck/vb-warships"
-        "Title" = "8:(Title)"
+        "Title" = "8:VB-Warships v0.1.1"
         "Subject" = "8:"
         "ARPCONTACT" = "8:dublowduck"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:(Description)"
+        "ARPCOMMENTS" = "8:An Installer for the game VB-Warships v0.1.1"
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
@@ -711,7 +719,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C70A2E644A934F8BB581AD7E2DCE2EC4"
             {
-            "SourcePath" = "8:..\\ihatemyself\\obj\\x86\\Release\\net5.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\obj\\Debug\\net5.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A1AF7DF1B11E48E3B1D8FE825E09DE1B"

@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
@@ -412,7 +412,7 @@ Partial Class Form1
         Me.lblVersionInfo.Name = "lblVersionInfo"
         Me.lblVersionInfo.Size = New System.Drawing.Size(37, 15)
         Me.lblVersionInfo.TabIndex = 38
-        Me.lblVersionInfo.Text = "v0.1.0"
+        Me.lblVersionInfo.Text = "v0.1.1"
         '
         'Form1
         '
