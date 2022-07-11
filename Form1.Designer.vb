@@ -58,6 +58,7 @@ Partial Class Form1
         Me.lsbScores = New System.Windows.Forms.ListBox()
         Me.lblLeaderBoard = New System.Windows.Forms.Label()
         Me.lblVersionInfo = New System.Windows.Forms.Label()
+        Me.lblPreRelease = New System.Windows.Forms.Label()
         CType(Me.picVBWarships, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -412,7 +413,18 @@ Partial Class Form1
         Me.lblVersionInfo.Name = "lblVersionInfo"
         Me.lblVersionInfo.Size = New System.Drawing.Size(37, 15)
         Me.lblVersionInfo.TabIndex = 38
-        Me.lblVersionInfo.Text = "v0.1.1"
+        Me.lblVersionInfo.Text = "v0.2.0"
+        '
+        'lblPreRelease
+        '
+        Me.lblPreRelease.AutoSize = True
+        Me.lblPreRelease.Font = New System.Drawing.Font("Segoe UI", 35.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.lblPreRelease.ForeColor = System.Drawing.Color.Red
+        Me.lblPreRelease.Location = New System.Drawing.Point(665, 55)
+        Me.lblPreRelease.Name = "lblPreRelease"
+        Me.lblPreRelease.Size = New System.Drawing.Size(283, 62)
+        Me.lblPreRelease.TabIndex = 39
+        Me.lblPreRelease.Text = "Pre-Release"
         '
         'Form1
         '
@@ -420,6 +432,7 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkOrange
         Me.ClientSize = New System.Drawing.Size(981, 537)
+        Me.Controls.Add(Me.lblPreRelease)
         Me.Controls.Add(Me.lblVersionInfo)
         Me.Controls.Add(Me.lblLeaderBoard)
         Me.Controls.Add(Me.lsbScores)
@@ -499,4 +512,5 @@ Partial Class Form1
     Friend WithEvents lsbScores As ListBox
     Friend WithEvents lblLeaderBoard As Label
     Friend WithEvents lblVersionInfo As Label
+    Friend WithEvents lblPreRelease As Label
 End Class
