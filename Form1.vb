@@ -1,4 +1,4 @@
-﻿'VB-Warships Version 0.1.1 pre-release
+﻿'VB-Warships Version 0.1.1
 'https://github.com/dublowduck/VB-Warships/tree/v0.1.1
 
 Imports System.IO 'used for reading and writing files
